@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Header from './Header';
+import HotelInfo from './HotelInfo';
 import Datepickers from './Datepickers';
 import Rooms from './Rooms';
 import { DateTime } from 'luxon';
@@ -12,13 +12,13 @@ function Hotel({ name }) {
   const [endDate, setEndDate] = useState(DateTime.now().plus({ days: 1 }));
 
   useEffect(() => {
-    async function fetchHotels() {
+    async function fetchHotel() {
       const url = `http://localhost:8080/getHotel?name=${name}`;
       const response = await fetch(url);
       const data = await response.json();
       setHotel(data);
     }
-    fetchHotels();
+    fetchHotel();
   }, []);
 
   useEffect(() => {
@@ -46,7 +46,7 @@ function Hotel({ name }) {
   return (
     <div className="hotel">
       <div>
-        <Header name={name} stars={hotel.stars} />
+        <HotelInfo name={name} stars={hotel.stars} />
       </div>
       <div>
         <Datepickers onStartSelect={onStartSelect} onEndSelect={onEndSelect} />

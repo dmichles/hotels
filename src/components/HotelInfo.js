@@ -7,7 +7,7 @@ import { CgGym } from 'react-icons/cg';
 import { MdLocalLaundryService } from 'react-icons/md';
 import { AiFillCar } from 'react-icons/ai';
 
-function Header({ name, stars }) {
+function HotelInfo({ name, stars }) {
   const renderedStars = [];
   console.log(Number(stars * 2));
   for (let i = 2; i <= Number(stars * 2); i = i + 2) {
@@ -69,4 +69,4 @@ function Header({ name, stars }) {
   return <div>{renderedHeader}</div>;
 }
 
-export default Header;
+export default HotelInfo;
