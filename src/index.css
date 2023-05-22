@@ -1,0 +1,194 @@
+.hotels-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  max-width: 1024px;
+}
+
+.hotels-show {
+  border: 1px solid gray;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 5px;
+  width: 160px;
+  align-self: flex-start;
+  box-shadow: 0 0 4px #c8c8c8;
+  position: relative;
+  cursor: pointer;
+  color: rgb(8, 98, 244);
+}
+
+.hotels-show h2 {
+  font-size: 16px;
+}
+
+.hotels-show img {
+  margin-top: 5px;
+  height: 150px;
+  width: 130px;
+}
+
+.navbar {
+  margin: auto;
+  max-width: 1024px;
+}
+.navbar-link {
+  margin: auto;
+  width: 140px;
+  font-size: 30;
+  font-weight: 900;
+  text-align: left;
+  color: rgb(8, 98, 244);
+  cursor: pointer;
+}
+
+.hotel {
+  margin: auto;
+  max-width: 1024px;
+  font-size: 30;
+  font-weight: 900;
+  color: rgb(8, 98, 244);
+}
+
+.hotel-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.hotel-show {
+  border: 1px solid gray;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 5px;
+  width: 260px;
+  align-self: flex-start;
+  box-shadow: 0 0 4px #c8c8c8;
+  position: relative;
+  cursor: pointer;
+  color: black;
+}
+
+.hotel-show h2 {
+  font-size: 16px;
+}
+
+.hotel-show img {
+  margin-top: 5px;
+  height: 250px;
+  width: 260px;
+}
+
+.hotel-list > div {
+  margin-right: 50px;
+}
+
+.icons-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 500px;
+}
+
+.icons {
+  display: flex;
+  color: black;
+}
+
+.icon {
+  font-size: 14px;
+  color: #868e96;
+  margin-left: 5px;
+}
+
+.heading {
+  color: black;
+}
+.header {
+  font-size: 40px;
+}
+
+.subheader {
+  font-size: 20px;
+  color: black;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+.datepickers {
+  display: flex;
+  gap: 5px;
+  margin: 5px;
+}
+.label {
+  color: black;
+}
+
+.btn {
+  font-size: 16px;
+  color: white;
+  background-color: #1971c2;
+  border-radius: 30px;
+  padding: 10px;
+  border: 0px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #1864ab;
+}
+.room-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.room-show {
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 5px;
+  width: 280px;
+  align-self: flex-start;
+  box-shadow: 0 0 4px #c8c8c8;
+  position: relative;
+  color: black;
+}
+
+.room-show h2 {
+  font-size: 16px;
+}
+
+.room-show img {
+  margin-top: 5px;
+  height: 250px;
+  width: 280px;
+}
+
+.room-type {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.price-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.price {
+  font-size: 20px;
+}
+
+.total {
+  font-size: 13px;
+  color: #868e96;
+}
+
+.footer {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.button-container {
+  align-self: center;
+}
