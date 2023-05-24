@@ -1,15 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import HotelInfo from './HotelInfo';
 import Datepickers from './Datepickers';
-import Rooms from './Rooms';
+import Room from './Room';
 import { DateTime } from 'luxon';
 
 function Hotel({ name }) {
   const [rooms, setRooms] = useState([]);
   const [hotel, setHotel] = useState([]);
   const [days, setDays] = useState(1);
-  const [startDate, setStartDate] = useState(DateTime.now());
-  const [endDate, setEndDate] = useState(DateTime.now().plus({ days: 1 }));
+  const startDate = useRef(DateTime.now().toISODate());
+  const endDate = useRef(DateTime.now().plus({ days: 1 }).toISODate());
 
   useEffect(() => {
     async function fetchHotel() {
@@ -33,15 +33,38 @@ function Hotel({ name }) {
   }, []);
 
   const onStartSelect = (start, end, days) => {
-    setStartDate(start);
-    setEndDate(end);
+    startDate.current = start.toISODate();
+    endDate.current = end.toISODate();
     setDays(days);
   };
 
   const onEndSelect = (end, days) => {
-    setEndDate(end);
+    endDate.current = end.toISODate();
     setDays(days);
   };
+
+  const onReserve = async id => {
+    console.log('test');
+    console.log(startDate.current);
+    console.log(endDate.current);
+    console.log(id);
+    const url = 'http://localhost:8080/addReservation';
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        startDate: startDate.current,
+        endDate: endDate.current,
+        roomId: id,
+      }),
+    });
+  };
+
+  const renderedRooms = rooms.map(room => {
+    return <Room key={room.id} room={room} days={days} onReserve={onReserve} />;
+  });
 
   return (
     <div className="hotel">
@@ -51,7 +74,7 @@ function Hotel({ name }) {
       <div>
         <Datepickers onStartSelect={onStartSelect} onEndSelect={onEndSelect} />
       </div>
-      <Rooms rooms={rooms} days={days} />
+      <div className="room-list">{renderedRooms}</div>
     </div>
   );
 }
