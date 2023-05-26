@@ -1,19 +1,24 @@
 import { useEffect, useState, useRef } from 'react';
-import HotelInfo from './HotelInfo';
-import Datepickers from './Datepickers';
-import Room from './Room';
+import { useParams, useNavigate, createSearchParams } from 'react-router-dom';
+import HotelInfo from '../components/HotelInfo';
+import Datepickers from '../components/Datepickers';
+import Room from '../components/Room';
 import { DateTime } from 'luxon';
 
-function Hotel({ name }) {
+function HotelPage() {
+  const params = useParams();
   const [rooms, setRooms] = useState([]);
-  const [hotel, setHotel] = useState([]);
+  const [hotel, setHotel] = useState({});
+  const [amenities, setAmenities] = useState({});
   const [days, setDays] = useState(1);
   const startDate = useRef(DateTime.now().toISODate());
   const endDate = useRef(DateTime.now().plus({ days: 1 }).toISODate());
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     async function fetchHotel() {
-      const url = `http://localhost:8080/getHotel?name=${name}`;
+      const url = `http://localhost:8080/getHotel?to=${params.to}`;
       const response = await fetch(url);
       const data = await response.json();
       setHotel(data);
@@ -23,13 +28,23 @@ function Hotel({ name }) {
 
   useEffect(() => {
     async function fetchRooms() {
-      const url = `http://localhost:8080/getRooms?name=${name}`;
+      const url = `http://localhost:8080/getRooms?to=${params.to}`;
       const response = await fetch(url);
       const data = await response.json();
 
       setRooms(data);
     }
     fetchRooms();
+  }, []);
+
+  useEffect(() => {
+    async function fetchAmenities() {
+      const url = `http://localhost:8080/getAmenities?to=${params.to}`;
+      const response = await fetch(url);
+      const data = await response.json();
+      setAmenities(data);
+    }
+    fetchAmenities();
   }, []);
 
   const onStartSelect = (start, end, days) => {
@@ -60,6 +75,15 @@ function Hotel({ name }) {
         roomId: id,
       }),
     });
+
+    navigate({
+      pathname: '/reservation',
+      search: createSearchParams({
+        start: startDate.current,
+        end: endDate.current,
+        roomId: id,
+      }).toString(),
+    });
   };
 
   const renderedRooms = rooms.map(room => {
@@ -69,7 +93,11 @@ function Hotel({ name }) {
   return (
     <div className="hotel">
       <div>
-        <HotelInfo name={name} stars={hotel.stars} />
+        <HotelInfo
+          name={hotel.name}
+          stars={hotel.stars}
+          amenities={amenities}
+        />
       </div>
       <div>
         <Datepickers onStartSelect={onStartSelect} onEndSelect={onEndSelect} />
@@ -79,4 +107,4 @@ function Hotel({ name }) {
   );
 }
 
-export default Hotel;
+export default HotelPage;

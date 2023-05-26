@@ -1,12 +1,10 @@
-import Link from './Link';
+import { Link } from 'react-router-dom';
 
 function NavBar() {
   return (
     <Link to="/">
       <div className="navbar">
-        <a className="navbar-link" href="/">
-          HOTELS dot NET
-        </a>
+        <p className="navbar-link">HOTELS dot NET</p>
       </div>
     </Link>
   );

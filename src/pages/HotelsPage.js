@@ -1,10 +1,8 @@
-import { useEffect, useContext, useState } from 'react';
-import Link from '../components/Link';
-import NavigationContext from '../context/navigation';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function HotelsPage() {
   const [hotels, setHotels] = useState([]);
-  const { currentPath } = useContext(NavigationContext);
 
   useEffect(() => {
     async function fetchHotels() {
@@ -18,12 +16,10 @@ function HotelsPage() {
 
   const renderedHotels = hotels.map(hotel => {
     return (
-      <Link key={hotel.id} to={hotel.to}>
+      <Link key={hotel.id} to={`/hotels/${hotel.to}`}>
         <div className="hotel-show">
-          <a href={hotel.to}>
-            <h2>{hotel.name}</h2>
-            <img src={hotel.picUrl} alt="" />
-          </a>
+          <h2>{hotel.name}</h2>
+          <img src={hotel.picUrl} alt="" />
         </div>
       </Link>
     );
