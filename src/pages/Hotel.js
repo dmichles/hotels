@@ -58,13 +58,13 @@ function HotelPage() {
     setDays(days);
   };
 
-  const onReserve = async id => {
+  const onReserve = async (id, type) => {
     console.log('test');
     console.log(startDate.current);
     console.log(endDate.current);
     console.log(id);
     const url = 'http://localhost:8080/addReservation';
-    const response = await fetch(url, {
+    await fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -76,14 +76,15 @@ function HotelPage() {
       }),
     });
 
-    navigate({
-      pathname: '/reservation',
-      search: createSearchParams({
-        start: startDate.current,
-        end: endDate.current,
-        roomId: id,
-      }).toString(),
-    });
+    navigate(
+      '/reservation',
+      // search: createSearchParams({
+      //   start: startDate.current,
+      //   end: endDate.current,
+      //   type: type,
+      // }).toString(),
+      { state: { start: startDate.current, end: endDate.current, type: type } }
+    );
   };
 
   const renderedRooms = rooms.map(room => {

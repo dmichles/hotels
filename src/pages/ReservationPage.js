@@ -1,12 +1,16 @@
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useLocation } from 'react-router-dom';
 
 function ReservationPage() {
-  const [searchParams, setSearchParams] = useSearchParams();
-  console.log(searchParams);
+  // const [searchParams, setSearchParams] = useSearchParams();
+  const location = useLocation();
+  const { start, end, type } = location.state;
+  console.log(location);
+
   return (
-    <div>
-      {searchParams.get('start')}-{searchParams.get('end')}
-      {searchParams.get('roomId')}
+    <div className="reservation">
+      {/* {searchParams.get('start')}-{searchParams.get('end')}
+      {searchParams.get('type')} */}
+      {start} {end} {type}
     </div>
   );
 }

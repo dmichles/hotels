@@ -192,3 +192,8 @@
 .button-container {
   align-self: center;
 }
+
+.reservation {
+  margin: auto;
+  max-width: 1024px;
+}

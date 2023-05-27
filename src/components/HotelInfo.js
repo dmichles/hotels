@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { RiWifiFill } from 'react-icons/ri';
 import { TbAirConditioning } from 'react-icons/tb';
 import { MdRestaurantMenu } from 'react-icons/md';

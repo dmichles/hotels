@@ -2,11 +2,11 @@ import { Link } from 'react-router-dom';
 
 function NavBar() {
   return (
-    <Link to="/">
-      <div className="navbar">
-        <p className="navbar-link">HOTELS dot NET</p>
-      </div>
-    </Link>
+    <div className="navbar">
+      <Link to="/" className="navbar-link">
+        HOTELS dot NET
+      </Link>
+    </div>
   );
 }
 
