@@ -2,14 +2,23 @@ import { useState } from 'react';
 import ReactDatePicker from 'react-datepicker';
 import { DateTime } from 'luxon';
 import 'react-datepicker/dist/react-datepicker.css';
+import { useSelector, useDispatch } from 'react-redux';
 
-function Datepickers({ onStartSelect, onEndSelect }) {
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(
-    new Date(startDate.getTime() + 86400000)
-  );
+import { startDateActions } from '../store/slices/startDate-slice';
+import { endDateActions } from '../store/slices/endDate-slice';
+
+function Datepickers() {
+  const dispatch = useDispatch();
+
+  const startDate = DateTime.fromISO(
+    useSelector(state => state.startDate.date)
+  ).toJSDate();
+  const endDate = DateTime.fromISO(
+    useSelector(state => state.endDate.date)
+  ).toJSDate();
+
   const [minEndDate, setMinEndDate] = useState(
-    new Date(startDate.getTime() + 86400000)
+    new Date(new Date().getTime() + 86400000)
   );
 
   const handleSelectStart = date => {
@@ -18,26 +27,11 @@ function Datepickers({ onStartSelect, onEndSelect }) {
       DateTime.fromJSDate(date).toISODate() >=
       DateTime.fromJSDate(endDate).toISODate()
     ) {
-      setEndDate(tomorrow);
+      dispatch(
+        endDateActions.setEndDate(DateTime.fromJSDate(tomorrow).toISO())
+      );
     }
     setMinEndDate(tomorrow);
-
-    const start = DateTime.fromJSDate(date);
-
-    const tom = DateTime.fromJSDate(tomorrow);
-    let days = tom.diff(start, 'days');
-    days = Math.round(days.values.days);
-    onStartSelect(start, tom, days);
-  };
-
-  const handleSelectEnd = date => {
-    const start = DateTime.fromJSDate(startDate);
-    const end = DateTime.fromJSDate(date);
-    let days = end.diff(start, 'days');
-    days = Math.round(days.values.days);
-    console.log(days);
-
-    onEndSelect(end, days);
   };
 
   const datepicker = (
@@ -55,7 +49,10 @@ function Datepickers({ onStartSelect, onEndSelect }) {
             startDate={startDate}
             endDate={endDate}
             onChange={date => {
-              setStartDate(date);
+              console.log(date);
+              dispatch(
+                startDateActions.setStartDate(DateTime.fromJSDate(date).toISO())
+              );
               handleSelectStart(date);
             }}
           />
@@ -74,8 +71,9 @@ function Datepickers({ onStartSelect, onEndSelect }) {
             startDate={startDate}
             endDate={endDate}
             onChange={date => {
-              setEndDate(date);
-              handleSelectEnd(date);
+              dispatch(
+                endDateActions.setEndDate(DateTime.fromJSDate(date).toISO())
+              );
             }}
           />
         </div>

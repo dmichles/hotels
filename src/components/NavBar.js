@@ -4,7 +4,10 @@ function NavBar() {
   return (
     <div className="navbar">
       <Link to="/" className="navbar-link">
-        HOTELS dot NET
+        Hotels
+      </Link>
+      <Link to="/reservations" className="navbar-link">
+        Reservations
       </Link>
     </div>
   );

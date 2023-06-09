@@ -3,62 +3,36 @@
   flex-wrap: wrap;
   margin: auto;
   max-width: 1024px;
-}
-
-.hotels-show {
-  border: 1px solid gray;
-  border-radius: 5px;
-  margin: 5px;
-  padding: 5px;
-  width: 160px;
-  align-self: flex-start;
-  box-shadow: 0 0 4px #c8c8c8;
-  position: relative;
-  cursor: pointer;
-  color: rgb(8, 98, 244);
-}
-
-.hotels-show h2 {
-  font-size: 16px;
-}
-
-.hotels-show img {
-  margin-top: 5px;
-  height: 150px;
-  width: 130px;
+  gap: 5px;
 }
 
 .navbar {
-  margin: auto;
-  max-width: 1024px;
-}
-.navbar-link {
-  margin: auto;
-  width: 140px;
-  font-size: 30;
-  font-weight: 900;
-  text-align: left;
-  color: rgb(8, 98, 244);
-  cursor: pointer;
-}
-
-.hotel {
-  margin: auto;
-  max-width: 1024px;
-  font-size: 30;
-  font-weight: 900;
-  color: rgb(8, 98, 244);
-}
-
-.hotel-list {
   display: flex;
-  flex-wrap: wrap;
+  margin: auto;
+  margin-bottom: 5px;
+  height: 2rem;
+  width: 1024px;
+  background-color: black;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 15px;
+}
+
+.navbar-link {
+  font-size: 30;
+  font-weight: 900;
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.navbar-link:hover {
+  text-decoration: underline;
 }
 
 .hotel-show {
   border: 1px solid gray;
   border-radius: 5px;
-  margin: 5px;
   padding: 5px;
   width: 260px;
   align-self: flex-start;
@@ -193,7 +167,57 @@
   align-self: center;
 }
 
+.link {
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
 .reservation {
   margin: auto;
   max-width: 1024px;
+}
+
+.reservations {
+  margin: auto;
+  max-width: 1024px;
+}
+
+.reservations h1 {
+  text-align: left;
+  font-size: 25px;
+}
+
+table {
+  display: grid;
+  min-width: 100%;
+  grid-template-columns:
+    minmax(150px, 1.67fr) minmax(150px, 1.67fr)
+    minmax(150px, 3.33fr) minmax(150px, 1.67fr) minmax(150px, 1.67fr);
+}
+
+thead,
+tbody,
+tr {
+  display: contents;
+}
+
+th,
+td {
+  padding: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+th {
+  position: sticky;
+  top: 0;
+  text-align: left;
+  font-weight: normal;
+  font-size: 1.1rem;
+  color: black;
+  font-weight: 800;
 }

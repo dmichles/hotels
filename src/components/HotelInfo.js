@@ -12,7 +12,6 @@ import { MdPool } from 'react-icons/md';
 import { MdPets } from 'react-icons/md';
 
 function HotelInfo({ name, stars, amenities }) {
-  console.log(amenities);
   const map1 = new Map();
   map1.set('Gym', <CgGym />);
   map1.set('Free WiFi', <RiWifiFill />);
@@ -29,7 +28,7 @@ function HotelInfo({ name, stars, amenities }) {
   for (let i = 2; i <= Number(stars * 2); i = i + 2) {
     renderedStars.push(<FaStar key={i} />);
     if (Number(stars * 2) - i === 1) {
-      renderedStars.push(<FaStarHalf />);
+      renderedStars.push(<FaStarHalf key={i + 1} />);
     }
   }
 
