@@ -26,4 +26,8 @@ export {
   useFetchAmenitiesQuery,
   useFetchRoomsQuery,
 } from './apis/hotelsApi';
-export { useFetchReservationsQuery } from './apis/reservationsApi';
+export {
+  useFetchReservationsQuery,
+  useDeleteReservationMutation,
+  useAddReservationMutation,
+} from './apis/reservationsApi';

@@ -30,6 +30,11 @@
   text-decoration: underline;
 }
 
+.hotel {
+  margin: auto;
+  max-width: 1024px;
+}
+
 .hotel-show {
   border: 1px solid gray;
   border-radius: 5px;

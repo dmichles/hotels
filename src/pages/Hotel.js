@@ -11,12 +11,27 @@ import {
   useFetchHotelQuery,
   useFetchAmenitiesQuery,
   useFetchRoomsQuery,
+  useAddReservationMutation,
 } from '../store';
 
 function HotelPage() {
   const params = useParams();
+  const [addReservation, results] = useAddReservationMutation();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [days, setDays] = useState(1);
+
+  useEffect(() => {
+    dispatch(
+      endDateActions.setEndDate(
+        DateTime.fromJSDate(new Date(new Date().getTime() + 86400000)).toISO()
+      )
+    );
+    dispatch(
+      startDateActions.setStartDate(DateTime.fromJSDate(new Date()).toISO())
+    );
+  }, []);
 
   const startDate = DateTime.fromISO(
     useSelector(state => state.startDate.date)
@@ -36,31 +51,55 @@ function HotelPage() {
     setDays(numDays);
   }
 
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+  let amenities;
+  const fetchedAmenities = useFetchAmenitiesQuery(params.to);
 
-  const onReserve = async (id, type) => {
-    const url = 'http://localhost:8080/addReservation';
-    await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        startDate: DateTime.fromJSDate(startDate).toISODate(),
-        endDate: DateTime.fromJSDate(endDate).toISODate(),
-        roomId: id,
-      }),
-    });
+  if (fetchedAmenities.isLoading) {
+    console.log('Loading data');
+  } else if (fetchedAmenities.error) {
+    console.log('Error loading data');
+  } else {
+    amenities = fetchedAmenities.data;
+  }
 
-    dispatch(
-      endDateActions.setEndDate(
-        DateTime.fromJSDate(new Date(new Date().getTime() + 86400000)).toISO()
-      )
+  const { data, error, isLoading } = useFetchHotelQuery(params.to);
+  let hotelInfo, hotel;
+  if (isLoading) {
+    console.log('Loading data');
+  } else if (error) {
+    console.log('Error loading data');
+  } else if (!isLoading && !fetchedAmenities.isLoading) {
+    hotel = data;
+    hotelInfo = (
+      <div>
+        <HotelInfo
+          name={hotel.name}
+          stars={hotel.stars}
+          amenities={amenities}
+        />
+      </div>
     );
-    dispatch(
-      startDateActions.setStartDate(DateTime.fromJSDate(new Date()).toISO())
-    );
+  }
+
+  const onReserve = (id, type) => {
+    // const url = 'http://localhost:8080/addReservation';
+    // await fetch(url, {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({
+    //     startDate: DateTime.fromJSDate(startDate).toISODate(),
+    //     endDate: DateTime.fromJSDate(endDate).toISODate(),
+    //     roomId: id,
+    //   }),
+    // });
+    const reservation = {
+      startDate: DateTime.fromJSDate(startDate).toISODate(),
+      endDate: DateTime.fromJSDate(endDate).toISODate(),
+      roomId: id,
+    };
+    addReservation(reservation);
 
     navigate(
       '/reservation',
@@ -74,40 +113,11 @@ function HotelPage() {
           start: DateTime.fromJSDate(startDate).toISODate(),
           end: DateTime.fromJSDate(endDate).toISODate(),
           type: type,
+          hotel: hotel,
         },
       }
     );
   };
-
-  let amenities;
-  const fetchedAmenities = useFetchAmenitiesQuery(params.to);
-
-  if (fetchedAmenities.isLoading) {
-    console.log('Loading data');
-  } else if (fetchedAmenities.error) {
-    console.log('Error loading data');
-  } else {
-    amenities = fetchedAmenities.data;
-  }
-
-  const { data, error, isLoading } = useFetchHotelQuery(params.to);
-  let hotelInfo;
-  if (isLoading) {
-    console.log('Loading data');
-  } else if (error) {
-    console.log('Error loading data');
-  } else if (!isLoading && !fetchedAmenities.isLoading) {
-    const hotel = data;
-    hotelInfo = (
-      <div>
-        <HotelInfo
-          name={hotel.name}
-          stars={hotel.stars}
-          amenities={amenities}
-        />
-      </div>
-    );
-  }
 
   const fetchedRooms = useFetchRoomsQuery(params.to);
   let renderedRooms;

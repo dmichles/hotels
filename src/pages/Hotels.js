@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useFetchHotelsQuery } from '../store';
 
@@ -14,8 +13,8 @@ function HotelsPage() {
   } else {
     renderedHotels = data.map(hotel => {
       return (
-        <div>
-          <Link key={hotel.id} to={`/hotels/${hotel.to}`} className="link">
+        <div key={hotel.id}>
+          <Link to={`/hotels/${hotel.to}`} className="link">
             <div className="hotel-show">
               <h2>{hotel.name}</h2>
               <img src={hotel.picUrl} alt="" />

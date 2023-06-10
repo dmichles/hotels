@@ -7,7 +7,32 @@ const reservationsApi = createApi({
   }),
   endpoints(builder) {
     return {
+      addReservation: builder.mutation({
+        invalidatesTags: ['Reservations'],
+        query: reservation => {
+          return {
+            url: '/addReservation',
+            body: {
+              startDate: reservation.startDate,
+              endDate: reservation.endDate,
+              roomId: reservation.roomId,
+            },
+            method: 'POST',
+          };
+        },
+      }),
+      deleteReservation: builder.mutation({
+        invalidatesTags: ['Reservations'],
+        query: id => {
+          return {
+            url: '/deleteReservation',
+            params: { id: id },
+            method: 'DELETE',
+          };
+        },
+      }),
       fetchReservations: builder.query({
+        providesTags: ['Reservations'],
         query: () => {
           return {
             url: '/getReservations',
@@ -19,5 +44,9 @@ const reservationsApi = createApi({
   },
 });
 
-export const { useFetchReservationsQuery } = reservationsApi;
+export const {
+  useFetchReservationsQuery,
+  useDeleteReservationMutation,
+  useAddReservationMutation,
+} = reservationsApi;
 export { reservationsApi };
