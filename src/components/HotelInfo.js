@@ -10,6 +10,7 @@ import { MdFreeBreakfast } from 'react-icons/md';
 import { MdSpa } from 'react-icons/md';
 import { MdPool } from 'react-icons/md';
 import { MdPets } from 'react-icons/md';
+import { FaCocktail } from 'react-icons/fa';
 
 function HotelInfo({ name, stars, amenities }) {
   const map1 = new Map();
@@ -23,6 +24,7 @@ function HotelInfo({ name, stars, amenities }) {
   map1.set('Spa', <MdSpa />);
   map1.set('Pool', <MdPool />);
   map1.set('Pet friendly', <MdPets />);
+  map1.set('Bar', <FaCocktail />);
 
   const renderedStars = [];
   for (let i = 2; i <= Number(stars * 2); i = i + 2) {
@@ -34,7 +36,7 @@ function HotelInfo({ name, stars, amenities }) {
 
   const renderedHeader = (
     <div className="heading">
-      <div className="header">{name}</div>
+      <div className="header">{name} New York</div>
       {renderedStars}
       <div className="subheader">Popular amenities</div>
       <div className="icons-list">

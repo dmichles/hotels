@@ -4,7 +4,7 @@ import { FaBed } from 'react-icons/fa';
 
 function Room({ room, days, onReserve }) {
   const handleReserve = () => {
-    onReserve(room.id, room.type);
+    onReserve(room.id);
   };
 
   return (

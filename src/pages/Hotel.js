@@ -63,13 +63,13 @@ function HotelPage() {
   }
 
   const { data, error, isLoading } = useFetchHotelQuery(params.to);
-  let hotelInfo, hotel;
+  let hotelInfo;
   if (isLoading) {
     console.log('Loading data');
   } else if (error) {
     console.log('Error loading data');
   } else if (!isLoading && !fetchedAmenities.isLoading) {
-    hotel = data;
+    const hotel = data;
     hotelInfo = (
       <div>
         <HotelInfo
@@ -81,7 +81,7 @@ function HotelPage() {
     );
   }
 
-  const onReserve = (id, type) => {
+  const onReserve = async roomId => {
     // const url = 'http://localhost:8080/addReservation';
     // await fetch(url, {
     //   method: 'POST',
@@ -97,9 +97,9 @@ function HotelPage() {
     const reservation = {
       startDate: DateTime.fromJSDate(startDate).toISODate(),
       endDate: DateTime.fromJSDate(endDate).toISODate(),
-      roomId: id,
+      roomId: roomId,
     };
-    addReservation(reservation);
+    const data = await addReservation(reservation).unwrap();
 
     navigate(
       '/reservation',
@@ -110,10 +110,12 @@ function HotelPage() {
       // }).toString(),
       {
         state: {
-          start: DateTime.fromJSDate(startDate).toISODate(),
-          end: DateTime.fromJSDate(endDate).toISODate(),
-          type: type,
-          hotel: hotel,
+          id: data.id,
+          start: data.startDate,
+          end: data.endDate,
+          type: data.room.type,
+          hotel: data.room.hotel.name,
+          url: data.room.picUrl,
         },
       }
     );
