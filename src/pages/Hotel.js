@@ -9,7 +9,6 @@ import Room from '../components/Room';
 import { DateTime } from 'luxon';
 import {
   useFetchHotelQuery,
-  useFetchAmenitiesQuery,
   useFetchRoomsQuery,
   useAddReservationMutation,
 } from '../store';
@@ -51,31 +50,21 @@ function HotelPage() {
     setDays(numDays);
   }
 
-  let amenities;
-  const fetchedAmenities = useFetchAmenitiesQuery(params.to);
-
-  if (fetchedAmenities.isLoading) {
-    console.log('Loading data');
-  } else if (fetchedAmenities.error) {
-    console.log('Error loading data');
-  } else {
-    amenities = fetchedAmenities.data;
-  }
-
   const { data, error, isLoading } = useFetchHotelQuery(params.to);
   let hotelInfo;
   if (isLoading) {
     console.log('Loading data');
   } else if (error) {
     console.log('Error loading data');
-  } else if (!isLoading && !fetchedAmenities.isLoading) {
+  } else if (!isLoading) {
     const hotel = data;
+    console.log(hotel);
     hotelInfo = (
       <div>
         <HotelInfo
           name={hotel.name}
           stars={hotel.stars}
-          amenities={amenities}
+          amenities={hotel.amenities}
         />
       </div>
     );

@@ -7,7 +7,6 @@ const ReservationsPage = () => {
   const [deleteReservation, results] = useDeleteReservationMutation();
 
   const handleClick = reservation => {
-    // const reservation = e.target.getAtrribute('data-value');
     deleteReservation(reservation.id);
   };
 

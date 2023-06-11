@@ -42,30 +42,30 @@ function HotelInfo({ name, stars, amenities }) {
       <div className="icons-list">
         <div>
           <div className="icons">
-            <div>{map1.get(amenities.am1)}</div>
-            <div className="icon">{amenities.am1}</div>
+            <div>{map1.get(amenities[0])}</div>
+            <div className="icon">{amenities[0]}</div>
           </div>
           <div className="icons">
-            <div>{map1.get(amenities.am2)}</div>
-            <div className="icon">{amenities.am2}</div>
+            <div>{map1.get(amenities[1])}</div>
+            <div className="icon">{amenities[1]}</div>
           </div>
           <div className="icons">
-            <div>{map1.get(amenities.am3)}</div>
-            <div className="icon">{amenities.am3}</div>
+            <div>{map1.get(amenities[2])}</div>
+            <div className="icon">{amenities[2]}</div>
           </div>
         </div>
         <div>
           <div className="icons">
-            <div>{map1.get(amenities.am4)}</div>
-            <div className="icon">{amenities.am4}</div>
+            <div>{map1.get(amenities[3])}</div>
+            <div className="icon">{amenities[3]}</div>
           </div>
           <div className="icons">
-            <div>{map1.get(amenities.am5)}</div>
-            <div className="icon">{amenities.am5}</div>
+            <div>{map1.get(amenities[4])}</div>
+            <div className="icon">{amenities[4]}</div>
           </div>
           <div className="icons">
-            <div>{map1.get(amenities.am6)}</div>
-            <div className="icon">{amenities.am6}</div>
+            <div>{map1.get(amenities[5])}</div>
+            <div className="icon">{amenities[5]}</div>
           </div>
         </div>
       </div>

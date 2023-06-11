@@ -24,15 +24,6 @@ const hotelsApi = createApi({
           };
         },
       }),
-      fetchAmenities: builder.query({
-        query: hotel => {
-          return {
-            url: '/getAmenities',
-            params: { to: hotel },
-            method: 'GET',
-          };
-        },
-      }),
       fetchRooms: builder.query({
         query: hotel => {
           return {
@@ -46,10 +37,6 @@ const hotelsApi = createApi({
   },
 });
 
-export const {
-  useFetchHotelsQuery,
-  useFetchHotelQuery,
-  useFetchAmenitiesQuery,
-  useFetchRoomsQuery,
-} = hotelsApi;
+export const { useFetchHotelsQuery, useFetchHotelQuery, useFetchRoomsQuery } =
+  hotelsApi;
 export { hotelsApi };

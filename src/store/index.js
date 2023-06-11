@@ -23,7 +23,6 @@ export default store;
 export {
   useFetchHotelsQuery,
   useFetchHotelQuery,
-  useFetchAmenitiesQuery,
   useFetchRoomsQuery,
 } from './apis/hotelsApi';
 export {
