@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const starSlice = createSlice({
+const starsSlice = createSlice({
   name: 'stars',
   initialState: [],
   reducers: {
@@ -11,9 +11,10 @@ const starSlice = createSlice({
       return state.filter(star => star !== action.payload);
     },
     setInitState(state) {
-      return state.filter(star => {
-        return false;
-      });
+      state = [];
     },
   },
 });
+
+export default starsSlice;
+export const starsActions = starsSlice.actions;
