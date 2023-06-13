@@ -49,7 +49,6 @@ function Datepickers() {
             startDate={startDate}
             endDate={endDate}
             onChange={date => {
-              console.log(date);
               dispatch(
                 startDateActions.setStartDate(DateTime.fromJSDate(date).toISO())
               );
