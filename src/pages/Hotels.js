@@ -4,13 +4,14 @@ import { useSelector } from 'react-redux';
 
 import StarFilter from '../components/StarFilter';
 import PopularFilter from '../components/PopularFilter';
+import SliderFilter from '../components/SliderFilter';
 
 function HotelsPage() {
   const stars = useSelector(state => state.stars);
-  const starsFilterFlag = useSelector(state => state.starsFilterFlag.flag);
   const popularFilter = useSelector(state => state.popularFilter);
-  console.log(popularFilter);
-  const popularFilterFlag = useSelector(state => state.popularFilterFlag.flag);
+
+  const minValue = useSelector(state => state.minValue.value);
+  const maxValue = useSelector(state => state.maxValue.value);
 
   const { data, error, isLoading } = useFetchHotelsQuery();
 
@@ -22,10 +23,15 @@ function HotelsPage() {
     return <div>Error loading data.</div>;
   } else {
     let hotels = data;
-    if (popularFilterFlag) {
+    hotels = hotels.filter(hotel => {
+      return (
+        hotel.rooms[0].price >= minValue &&
+        hotel.rooms[0].price <=
+          (maxValue === 2000 ? Number.MAX_VALUE : maxValue)
+      );
+    });
+    if (popularFilter.length > 0) {
       hotels = hotels.filter(hotel => {
-        if (popularFilterFlag) {
-        }
         let result = false;
         hotel.amenities.forEach(element => {
           if (popularFilter.includes(element)) {
@@ -35,15 +41,14 @@ function HotelsPage() {
         return result;
       });
     }
-    if (starsFilterFlag) {
-      console.log(starsFilterFlag);
+    if (stars.length > 0) {
       hotels = hotels.filter(hotel => stars.includes(hotel.stars));
     }
 
     renderedHotels = hotels.map(hotel => {
       return (
         <div key={hotel.id}>
-          <Link to={`/hotels/${hotel.to}`} className="link">
+          <Link to={`/hotels/${hotel.to}`} className="link" target="_blank">
             <div className="hotel-show">
               <h2 style={{ marginBottom: '3px' }}>{hotel.name}</h2>
               <h5 style={{ marginTop: '1px', color: 'gray' }}>New York</h5>
@@ -63,6 +68,9 @@ function HotelsPage() {
         </div>
         <div>
           <PopularFilter />
+        </div>
+        <div>
+          <SliderFilter />
         </div>
       </div>
       <div className="hotels-list">{renderedHotels}</div>

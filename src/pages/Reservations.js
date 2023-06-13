@@ -29,7 +29,7 @@ const ReservationsPage = () => {
           <td>{reservation.type}</td>
           <td>{reservation.name}</td>
           <td>
-            <button onClick={() => handleClick(reservation)}>Manage</button>
+            <button onClick={() => handleClick(reservation)}>Cancel</button>
           </td>
         </tr>
       );

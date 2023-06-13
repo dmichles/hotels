@@ -4,9 +4,9 @@ import { reservationsApi } from './apis/reservationsApi';
 import startDateSlice from './slices/startDate-slice';
 import endDateSlice from './slices/endDate-slice';
 import starsSlice from './slices/stars-slice';
-import starsFilterFlagSlice from './slices/starsFilterFlag-slice';
 import popularFilterSlice from './slices/popularFilter-slice';
-import popularFilterFlagSlice from './slices/popularFilterFlag-slice';
+import minValueSlice from './slices/minValue-slice';
+import maxValueSlice from './slices/maxValue-slice';
 
 const store = configureStore({
   reducer: {
@@ -15,9 +15,9 @@ const store = configureStore({
     startDate: startDateSlice.reducer,
     endDate: endDateSlice.reducer,
     stars: starsSlice.reducer,
-    starsFilterFlag: starsFilterFlagSlice.reducer,
     popularFilter: popularFilterSlice.reducer,
-    popularFilterFlag: popularFilterFlagSlice.reducer,
+    minValue: minValueSlice.reducer,
+    maxValue: maxValueSlice.reducer,
   },
   middleware: getDefaultMiddleware => {
     return getDefaultMiddleware().concat(

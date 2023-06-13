@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, useNavigate, createSearchParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { endDateActions } from '../store/slices/endDate-slice';
@@ -51,14 +51,14 @@ function HotelPage() {
   }
 
   const { data, error, isLoading } = useFetchHotelQuery(params.to);
-  let hotelInfo;
+  let hotelInfo, hotel;
   if (isLoading) {
     console.log('Loading data');
   } else if (error) {
     console.log('Error loading data');
   } else if (!isLoading) {
-    const hotel = data;
-    console.log(hotel);
+    hotel = data;
+
     hotelInfo = (
       <div>
         <HotelInfo
@@ -103,7 +103,7 @@ function HotelPage() {
           start: data.startDate,
           end: data.endDate,
           type: data.room.type,
-          hotel: data.room.hotel.name,
+          hotel: hotel.name,
           url: data.room.picUrl,
         },
       }
