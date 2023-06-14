@@ -11,7 +11,9 @@ const popularFilterSlice = createSlice({
       return state.filter(filter => filter !== action.payload);
     },
     setInitState(state) {
-      state = [];
+      return state.filter(filter => {
+        return false;
+      });
     },
   },
 });

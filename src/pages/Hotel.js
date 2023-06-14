@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams, useNavigate, createSearchParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { endDateActions } from '../store/slices/endDate-slice';
 import { startDateActions } from '../store/slices/startDate-slice';

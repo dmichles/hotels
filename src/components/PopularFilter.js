@@ -10,6 +10,10 @@ function PopularFilter() {
 
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(popularFilterActions.setInitState());
+  }, []);
+
   const handleChange1 = flag => {
     setChecked1(flag);
     if (flag) {

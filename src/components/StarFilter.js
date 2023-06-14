@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { FaStar } from 'react-icons/fa';
 import { starsActions } from '../store/slices/stars-slice';
 
@@ -7,8 +7,14 @@ function StarFilter() {
   const [clicked4, setClicked4] = useState(false);
   const [clicked45, setClicked45] = useState(false);
   const [clicked5, setClicked5] = useState(false);
+  const stars = useSelector(state => state.stars);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(starsActions.setInitState());
+    console.log(stars);
+  }, []);
 
   const handleClick4 = flag => {
     setClicked4(flag);

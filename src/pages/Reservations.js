@@ -19,7 +19,6 @@ const ReservationsPage = () => {
   } else if (fetchedReservations.error) {
     console.log('Error loading data');
   } else {
-    if (fetchedReservations.data) console.log('blah');
     if (fetchedReservations.data.length > 0) flag = true;
     reservations = fetchedReservations.data.map(reservation => {
       return (

@@ -11,7 +11,9 @@ const starsSlice = createSlice({
       return state.filter(star => star !== action.payload);
     },
     setInitState(state) {
-      state = [];
+      return state.filter(star => {
+        return false;
+      });
     },
   },
 });
