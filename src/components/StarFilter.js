@@ -13,7 +13,6 @@ function StarFilter() {
 
   useEffect(() => {
     dispatch(starsActions.setInitState());
-    console.log(stars);
   }, []);
 
   const handleClick4 = flag => {

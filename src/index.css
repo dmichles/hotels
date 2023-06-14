@@ -1,12 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+html {
+  font-family: 'Inter';
+  background-color: #e9ecef;
+}
+
 .hotels {
   display: flex;
   margin: auto;
-  max-width: 1024px;
+  max-width: 900px;
+  max-height: fit-content;
+  background-color: #e9ecef;
 }
 
 .hotels-filter {
-  width: 220px;
+  width: 260px;
   margin: 10px;
+  background-color: #e9ecef;
 }
 
 .hotels-filter-heading {
@@ -18,7 +28,7 @@
 .hotels-list {
   display: flex;
   flex-wrap: wrap;
-  width: 1024px;
+  width: 900px;
   gap: 5px;
 }
 
@@ -27,7 +37,7 @@
   margin: auto;
   margin-bottom: 5px;
   height: 2rem;
-  width: 1024px;
+  width: 900px;
   background-color: black;
   justify-content: space-between;
   align-items: center;
@@ -45,33 +55,46 @@
 
 .hotel {
   margin: auto;
-  max-width: 1024px;
+  max-width: 900px;
 }
 
 .hotel-show {
+  display: flex;
   border: 1px solid gray;
   border-radius: 5px;
   padding: 5px;
-  width: 260px;
+  height: 220px;
+  width: 670px;
   align-self: flex-start;
   box-shadow: 0 0 4px #c8c8c8;
   position: relative;
   cursor: pointer;
   color: black;
+  background-color: white;
+  gap: 10px;
 }
 
 .hotel-show h2 {
-  font-size: 20px;
+  font-size: 25px;
 }
 
 .hotel-show h2:hover {
   text-decoration: underline;
 }
 
+.hotel-show-data {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hotel-show-img {
+  margin: 0px;
+}
+
 img {
-  margin-top: 5px;
-  height: 250px;
-  width: 260px;
+  height: 220px;
+  width: 250px;
 }
 
 /* .hotel-list > div {
@@ -97,6 +120,7 @@ img {
 
 .heading {
   color: black;
+  background-color: white;
 }
 .header {
   font-size: 40px;
@@ -141,11 +165,12 @@ img {
   border-radius: 5px;
   margin: 5px;
   padding: 5px;
-  width: 280px;
+  width: 300px;
   align-self: flex-start;
   box-shadow: 0 0 4px #c8c8c8;
   position: relative;
   color: black;
+  background-color: white;
 }
 
 .room-show h2 {
@@ -155,7 +180,7 @@ img {
 .room-show img {
   margin-top: 5px;
   height: 250px;
-  width: 280px;
+  width: 300px;
 }
 
 .room-type {
@@ -241,12 +266,16 @@ th {
 }
 
 .btn-notclicked {
+  width: 60px;
+  height: 30px;
   margin-top: 3px;
   margin-right: 5px;
   background-color: #e9ecef;
 }
 
 .btn-clicked {
+  width: 60px;
+  height: 30px;
   margin-top: 3px;
   margin-right: 5px;
   background-color: #adb5bd;

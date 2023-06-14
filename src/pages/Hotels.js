@@ -33,9 +33,14 @@ function HotelsPage() {
     if (popularFilter.length > 0) {
       hotels = hotels.filter(hotel => {
         let result = false;
-        hotel.amenities.forEach(element => {
-          if (popularFilter.includes(element)) {
-            result = true;
+        let prev = true;
+        popularFilter.forEach(element => {
+          if (hotel.amenities.includes(element)) {
+            result = prev ? true : false;
+            prev = result ? true : false;
+          } else {
+            result = false;
+            prev = false;
           }
         });
         return result;
@@ -50,9 +55,18 @@ function HotelsPage() {
         <div key={hotel.id}>
           <Link to={`/hotels/${hotel.to}`} className="link" target="_blank">
             <div className="hotel-show">
-              <h2 style={{ marginBottom: '3px' }}>{hotel.name}</h2>
-              <h5 style={{ marginTop: '1px', color: 'gray' }}>New York</h5>
-              <img src={hotel.picUrl} alt="" />
+              <div className="hotel-show-img">
+                <img src={hotel.picUrl} alt="" />
+              </div>
+              <div className="hotel-show-data">
+                <div>
+                  <h2 style={{ marginBottom: '3px' }}>{hotel.name}</h2>
+                  <h5 style={{ marginTop: '1px', color: 'gray' }}>New York</h5>
+                </div>
+                <div>
+                  <h2>${hotel.rooms[0].price}</h2>
+                </div>
+              </div>
             </div>
           </Link>
         </div>
