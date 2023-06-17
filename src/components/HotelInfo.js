@@ -12,7 +12,7 @@ import { MdPool } from 'react-icons/md';
 import { MdPets } from 'react-icons/md';
 import { FaCocktail } from 'react-icons/fa';
 
-function HotelInfo({ name, stars, amenities }) {
+function HotelInfo({ name, stars, amenities, rating }) {
   const map1 = new Map();
   map1.set('Gym', <CgGym />);
   map1.set('Free WiFi', <RiWifiFill />);
@@ -26,6 +26,11 @@ function HotelInfo({ name, stars, amenities }) {
   map1.set('Pet friendly', <MdPets />);
   map1.set('Bar', <FaCocktail />);
 
+  const map2 = new Map();
+  map2.set(8, 'Very Good');
+  map2.set(9, 'Excellent');
+  map2.set(10, 'Wonderful');
+
   const renderedStars = [];
   for (let i = 2; i <= Number(stars * 2); i = i + 2) {
     renderedStars.push(<FaStar key={i} />);
@@ -38,6 +43,9 @@ function HotelInfo({ name, stars, amenities }) {
     <div className="heading">
       <div className="header">{name} New York</div>
       {renderedStars}
+      <div style={{ marginTop: '10px' }}>
+        {rating}/10 {map2.get(Math.round(Number(rating)))}
+      </div>
       <div className="subheader">Popular amenities</div>
       <div className="icons-list">
         <div>

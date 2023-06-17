@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { startDateActions } from '../store/slices/startDate-slice';
 import { endDateActions } from '../store/slices/endDate-slice';
+import { BsFillPeopleFill } from 'react-icons/bs';
 
 function Datepickers() {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ function Datepickers() {
   ).toJSDate();
 
   const [minEndDate, setMinEndDate] = useState(
-    new Date(new Date().getTime() + 86400000)
+    new Date(startDate.getTime() + 86400000)
   );
 
   const handleSelectStart = date => {
@@ -80,11 +81,6 @@ function Datepickers() {
     </div>
   );
 
-  return (
-    <div>
-      <div className="subheader">Choose your room</div>
-      {datepicker}
-    </div>
-  );
+  return <div>{datepicker}</div>;
 }
 export default Datepickers;

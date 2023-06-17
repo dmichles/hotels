@@ -1,10 +1,16 @@
-import { Link } from 'react-router-dom';
 import { useFetchHotelsQuery } from '../store';
-import { useSelector } from 'react-redux';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { DateTime } from 'luxon';
 import StarFilter from '../components/StarFilter';
 import PopularFilter from '../components/PopularFilter';
 import SliderFilter from '../components/SliderFilter';
+import HotelsList from '../components/HotelsList';
+import Datepickers from '../components/Datepickers';
+import { endDateActions } from '../store/slices/endDate-slice';
+import { startDateActions } from '../store/slices/startDate-slice';
+import { daysSliceActions } from '../store/slices/days-slice';
+import Travelers from '../components/Travelers';
 
 function HotelsPage() {
   const stars = useSelector(state => state.stars);
@@ -12,10 +18,44 @@ function HotelsPage() {
 
   const minValue = useSelector(state => state.minValue.value);
   const maxValue = useSelector(state => state.maxValue.value);
+  const travelers = useSelector(state => state.travelers.value);
+  const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(
+  //     endDateActions.setEndDate(
+  //       DateTime.fromJSDate(new Date(new Date().getTime() + 86400000)).toISO()
+  //     )
+  //   );
+  //   dispatch(
+  //     startDateActions.setStartDate(DateTime.fromJSDate(new Date()).toISO())
+  //   );
+  // }, []);
+
+  const startDate = DateTime.fromISO(
+    useSelector(state => state.startDate.date)
+  ).toJSDate();
+  const endDate = DateTime.fromISO(
+    useSelector(state => state.endDate.date)
+  ).toJSDate();
+
+  const days = useSelector(state => state.days.value);
+
+  const start = DateTime.fromJSDate(startDate);
+
+  const end = DateTime.fromJSDate(endDate);
+
+  let numDays = end.diff(start, 'days');
+
+  numDays = Math.round(numDays.values.days);
+
+  useEffect(() => {
+    if (numDays !== days) {
+      dispatch(daysSliceActions.setDays(numDays));
+    }
+  }, [numDays]);
 
   const { data, error, isLoading } = useFetchHotelsQuery();
-
-  let renderedHotels;
 
   if (isLoading) {
     return <div>Loading data</div>;
@@ -23,6 +63,19 @@ function HotelsPage() {
     return <div>Error loading data.</div>;
   } else {
     let hotels = data;
+    hotels = hotels.map(hotel => ({ ...hotel, price: null }));
+
+    hotels = hotels.filter(hotel => {
+      for (let i = 0; i < hotel.rooms.length; i++) {
+        if (travelers <= Number(hotel.rooms[i].people)) {
+          console.log(hotel.name, hotel.rooms[i].price);
+          hotel.price = hotel.rooms[i].price;
+          return true;
+        }
+      }
+      return false;
+    });
+
     hotels = hotels.filter(hotel => {
       return (
         hotel.rooms[0].price >= minValue &&
@@ -50,46 +103,39 @@ function HotelsPage() {
       hotels = hotels.filter(hotel => stars.includes(hotel.stars));
     }
 
-    renderedHotels = hotels.map(hotel => {
-      return (
-        <div key={hotel.id}>
-          <Link to={`/hotels/${hotel.to}`} className="link" target="_blank">
-            <div className="hotel-show">
-              <div className="hotel-show-img">
-                <img src={hotel.picUrl} alt="" />
-              </div>
-              <div className="hotel-show-data">
-                <div>
-                  <h2 style={{ marginBottom: '3px' }}>{hotel.name}</h2>
-                  <h5 style={{ marginTop: '1px', color: 'gray' }}>New York</h5>
-                </div>
-                <div>
-                  <h2>${hotel.rooms[0].price}</h2>
-                </div>
-              </div>
+    return (
+      <div className="hotels">
+        <div className="hotels-datepickers">
+          <div>
+            <Datepickers />
+          </div>
+          <div>
+            <Travelers />
+          </div>
+        </div>
+        <div style={{ display: 'flex' }}>
+          <div className="hotels-filter">
+            <div className="hotels-filter-heading">Filter by</div>
+            <div>
+              <StarFilter />
             </div>
-          </Link>
-        </div>
-      );
-    });
-  }
-  return (
-    <div className="hotels">
-      <div className="hotels-filter">
-        <div className="hotels-filter-heading">Filter by</div>
-        <div>
-          <StarFilter />
-        </div>
-        <div>
-          <PopularFilter />
-        </div>
-        <div>
-          <SliderFilter />
+            <div>
+              <PopularFilter />
+            </div>
+            <div>
+              <SliderFilter />
+            </div>
+          </div>
+          <HotelsList
+            hotels={hotels}
+            days={days}
+            chkin={DateTime.fromJSDate(startDate).toISODate()}
+            chkout={DateTime.fromJSDate(endDate).toISODate()}
+          />
         </div>
       </div>
-      <div className="hotels-list">{renderedHotels}</div>
-    </div>
-  );
+    );
+  }
 }
 
 export default HotelsPage;

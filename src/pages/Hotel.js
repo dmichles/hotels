@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { endDateActions } from '../store/slices/endDate-slice';
 import { startDateActions } from '../store/slices/startDate-slice';
@@ -12,25 +12,21 @@ import {
   useFetchRoomsQuery,
   useAddReservationMutation,
 } from '../store';
+import { daysSliceActions } from '../store/slices/days-slice';
 
 function HotelPage() {
   const params = useParams();
   const [addReservation, results] = useAddReservationMutation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  const [days, setDays] = useState(1);
+  const [queryParameters] = useSearchParams();
 
   useEffect(() => {
-    dispatch(
-      endDateActions.setEndDate(
-        DateTime.fromJSDate(new Date(new Date().getTime() + 86400000)).toISO()
-      )
-    );
-    dispatch(
-      startDateActions.setStartDate(DateTime.fromJSDate(new Date()).toISO())
-    );
+    dispatch(startDateActions.setStartDate(queryParameters.get('chkin')));
+    dispatch(endDateActions.setEndDate(queryParameters.get('chkout')));
   }, []);
+
+  const days = useSelector(state => state.days.value);
 
   const startDate = DateTime.fromISO(
     useSelector(state => state.startDate.date)
@@ -46,9 +42,12 @@ function HotelPage() {
   let numDays = end.diff(start, 'days');
 
   numDays = Math.round(numDays.values.days);
-  if (numDays !== days) {
-    setDays(numDays);
-  }
+
+  useEffect(() => {
+    if (numDays !== days) {
+      dispatch(daysSliceActions.setDays(numDays));
+    }
+  }, [numDays]);
 
   const { data, error, isLoading } = useFetchHotelQuery(params.to);
   let hotelInfo, hotel;
@@ -65,6 +64,7 @@ function HotelPage() {
           name={hotel.name}
           stars={hotel.stars}
           amenities={hotel.amenities}
+          rating={hotel.rating}
         />
       </div>
     );
@@ -128,6 +128,7 @@ function HotelPage() {
     <div className="hotel">
       {hotelInfo}
       <div>
+        <div className="subheader">Choose your room</div>
         <Datepickers />
       </div>
       <div className="room-list">{renderedRooms}</div>

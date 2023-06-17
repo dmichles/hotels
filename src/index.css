@@ -2,21 +2,21 @@
 
 html {
   font-family: 'Inter';
-  background-color: #e9ecef;
+  background-color: #f8f9fa;
 }
 
 .hotels {
-  display: flex;
   margin: auto;
   max-width: 900px;
   max-height: fit-content;
-  background-color: #e9ecef;
 }
-
+.hotels-datepickers {
+  margin-left: 215px;
+  display: flex;
+}
 .hotels-filter {
   width: 260px;
   margin: 10px;
-  background-color: #e9ecef;
 }
 
 .hotels-filter-heading {
@@ -78,20 +78,53 @@ html {
   font-size: 25px;
 }
 
-.hotel-show h2:hover {
-  text-decoration: underline;
+.hotel-show h5 {
+  font-size: 15px;
 }
 
 .hotel-show-data {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 500px;
 }
 
-.hotel-show-img {
-  margin: 0px;
+.hotel-show-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 
+.hotel-show-footer-rating {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 5px;
+}
+
+.hotel-show-footer-rating-number {
+  border: 1px solid gray;
+  border-radius: 5px;
+  width: 25px;
+  background-color: #e9ecef;
+}
+
+.hotel-show-footer-price {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  margin: none;
+}
+
+.hotel-show-footer-price-room {
+  font-size: 25px;
+}
+
+.hotel-show-footer-price-total {
+  margin-top: 3px;
+  font-size: 13px;
+}
 img {
   height: 220px;
   width: 250px;
@@ -155,6 +188,18 @@ img {
 .btn:hover {
   background-color: #1864ab;
 }
+
+.btn-done {
+  font-size: 16px;
+  color: white;
+  background-color: #1971c2;
+  border-radius: 30px;
+  padding: 10px;
+  border: 0px;
+  cursor: pointer;
+  width: 70px;
+}
+
 .room-list {
   display: flex;
   flex-wrap: wrap;
@@ -220,12 +265,12 @@ img {
 
 .reservation {
   margin: auto;
-  max-width: 1024px;
+  max-width: 900px;
 }
 
 .reservations {
   margin: auto;
-  max-width: 1024px;
+  max-width: 900px;
 }
 
 .reservations h1 {
@@ -266,17 +311,50 @@ th {
 }
 
 .btn-notclicked {
-  width: 60px;
+  width: 55px;
   height: 30px;
   margin-top: 3px;
   margin-right: 5px;
+  border-radius: 5px;
   background-color: #e9ecef;
+  padding: none;
+}
+
+.btn-notclicked:hover {
+  background-color: #adb5bd;
+  cursor: pointer;
 }
 
 .btn-clicked {
-  width: 60px;
+  width: 55px;
   height: 30px;
   margin-top: 3px;
   margin-right: 5px;
+  border-radius: 5px;
   background-color: #adb5bd;
+}
+
+.btn-clicked:hover {
+  cursor: pointer;
+}
+
+.travelers-box {
+  font-size: 14px;
+  display: flex;
+  border: 1px solid gray;
+  border-radius: 2px;
+  width: 178px;
+  height: 28px;
+  align-items: center;
+  gap: 10px;
+}
+.popup-content {
+  margin: auto;
+  background: rgb(255, 255, 255);
+  padding: 5px;
+  width: 200px;
+  height: 130px;
+  border: 1px solid white;
+  border-radius: 5px;
+  box-shadow: 4px 4px 9px #c8c8c8;
 }
