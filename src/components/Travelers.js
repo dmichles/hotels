@@ -1,9 +1,12 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { BsFillPeopleFill } from 'react-icons/bs';
-import TetherComponent from 'react-tether';
-
+import { usePopperTooltip } from 'react-popper-tooltip';
+import 'react-popper-tooltip/dist/styles.css';
+import { IconContext } from 'react-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { travelersActions } from '../store/slices/travelers-slice';
+
+import ReactDOM from 'react-dom';
 
 function Travelers() {
   const [open, setOpen] = useState(false);
@@ -11,6 +14,29 @@ function Travelers() {
   const dispatch = useDispatch();
 
   const travelers = useSelector(state => state.travelers.value);
+  const { getArrowProps, getTooltipProps, setTooltipRef, setTriggerRef } =
+    usePopperTooltip({
+      interactive: 'true',
+    });
+
+  const ref1 = useRef();
+  const ref2 = useRef();
+
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if (
+        ref1.current &&
+        !ref1.current.contains(e.target) &&
+        ref2.current &&
+        !ref2.current.contains(e.target)
+      ) {
+        setOpen(false);
+      }
+    }
+
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, []);
 
   const handleClick = value => {
     setCounter(value);
@@ -22,29 +48,37 @@ function Travelers() {
   };
 
   return (
-    <TetherComponent
-      attachment="bottom right"
-      targetAttachment="top right"
-      constraints={[{ to: 'scrollParent', attachment: 'together' }]}
-      renderTarget={ref => (
-        <div ref={ref} style={{ marginTop: '5px' }}>
+    <div>
+      <div ref={setTriggerRef} style={{ marginTop: '5px' }}>
+        <div>
+          <label className="label">Travelers</label>
+        </div>
+        <div
+          ref={ref1}
+          className="travelers-box"
+          onClick={() => setOpen(!open)}
+        >
           <div>
-            <label className="label">Travelers</label>
-          </div>
-          <div className="travelers-box" onClick={() => setOpen(!open)}>
-            <div>
+            <IconContext.Provider
+              value={{ style: { verticalAlign: 'middle' } }}
+            >
               <BsFillPeopleFill />
-            </div>
-            <div>
-              {' '}
-              {travelers} {travelers > 1 ? 'travelers' : 'traveler'}
-            </div>
+            </IconContext.Provider>
+          </div>
+          <div>
+            {travelers} {travelers > 1 ? 'travelers' : 'traveler'}
           </div>
         </div>
-      )}
-      renderElement={ref =>
-        open && (
-          <div ref={ref} className="popup-content">
+      </div>
+
+      {open && (
+        <div ref={ref2}>
+          <div
+            ref={setTooltipRef}
+            className="tooltip-container"
+            {...getTooltipProps({ className: 'tooltip-container' })}
+          >
+            <div {...getArrowProps({ className: 'tooltip-arrow' })} />
             <div style={{ marginTop: '10px' }}>
               <div
                 style={{
@@ -105,7 +139,6 @@ function Travelers() {
                 </div>
               </div>
               <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <div></div>
                 <div style={{ marginTop: '20px' }}>
                   <button className="btn-done" onClick={handleDone}>
                     Done
@@ -114,10 +147,9 @@ function Travelers() {
               </div>
             </div>
           </div>
-        )
-      }
-    />
+        </div>
+      )}
+    </div>
   );
 }
-
 export default Travelers;

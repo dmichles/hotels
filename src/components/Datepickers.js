@@ -6,7 +6,6 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { startDateActions } from '../store/slices/startDate-slice';
 import { endDateActions } from '../store/slices/endDate-slice';
-import { BsFillPeopleFill } from 'react-icons/bs';
 
 function Datepickers() {
   const dispatch = useDispatch();
@@ -14,6 +13,7 @@ function Datepickers() {
   const startDate = DateTime.fromISO(
     useSelector(state => state.startDate.date)
   ).toJSDate();
+
   const endDate = DateTime.fromISO(
     useSelector(state => state.endDate.date)
   ).toJSDate();
@@ -43,16 +43,16 @@ function Datepickers() {
         </div>
         <div>
           <ReactDatePicker
+            className="mydatepicker"
             showIcon
-            minDate={startDate}
+            dateFormat={['MM/dd/yyyy', 'MM/dd/yyyy']}
+            monthsShown={2}
+            minDate={new Date()}
             selectsStart
             selected={startDate}
             startDate={startDate}
             endDate={endDate}
             onChange={date => {
-              dispatch(
-                startDateActions.setStartDate(DateTime.fromJSDate(date).toISO())
-              );
               handleSelectStart(date);
             }}
           />
@@ -67,6 +67,7 @@ function Datepickers() {
             showIcon
             minDate={minEndDate}
             selectsEnd
+            monthsShown={2}
             selected={endDate}
             startDate={startDate}
             endDate={endDate}

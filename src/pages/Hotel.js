@@ -13,6 +13,8 @@ import {
   useAddReservationMutation,
 } from '../store';
 import { daysSliceActions } from '../store/slices/days-slice';
+import { travelersActions } from '../store/slices/travelers-slice';
+import Travelers from '../components/Travelers';
 
 function HotelPage() {
   const params = useParams();
@@ -24,6 +26,8 @@ function HotelPage() {
   useEffect(() => {
     dispatch(startDateActions.setStartDate(queryParameters.get('chkin')));
     dispatch(endDateActions.setEndDate(queryParameters.get('chkout')));
+
+    dispatch(travelersActions.setTravelers(queryParameters.get('trvlrs')));
   }, []);
 
   const days = useSelector(state => state.days.value);
@@ -34,6 +38,8 @@ function HotelPage() {
   const endDate = DateTime.fromISO(
     useSelector(state => state.endDate.date)
   ).toJSDate();
+
+  const travelers = useSelector(state => state.travelers.value);
 
   const start = DateTime.fromJSDate(startDate);
 
@@ -117,7 +123,14 @@ function HotelPage() {
   } else if (fetchedRooms.error) {
     console.log('Error loading data');
   } else {
-    renderedRooms = fetchedRooms.data.map(room => {
+    const rooms = fetchedRooms.data.filter(room => {
+      if (travelers <= Number(room.people)) {
+        return true;
+      }
+      return false;
+    });
+
+    renderedRooms = rooms.map(room => {
       return (
         <Room key={room.id} room={room} days={days} onReserve={onReserve} />
       );
@@ -129,7 +142,10 @@ function HotelPage() {
       {hotelInfo}
       <div>
         <div className="subheader">Choose your room</div>
-        <Datepickers />
+        <div className="hotel-datepickers">
+          <Datepickers />
+          <Travelers />
+        </div>
       </div>
       <div className="room-list">{renderedRooms}</div>
     </div>

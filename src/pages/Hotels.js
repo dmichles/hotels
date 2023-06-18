@@ -131,6 +131,7 @@ function HotelsPage() {
             days={days}
             chkin={DateTime.fromJSDate(startDate).toISODate()}
             chkout={DateTime.fromJSDate(endDate).toISODate()}
+            travelers={travelers}
           />
         </div>
       </div>

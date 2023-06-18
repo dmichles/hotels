@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-function HotelsList({ hotels, days, chkin, chkout }) {
+function HotelsList({ hotels, days, chkin, chkout, travelers }) {
   const map1 = new Map();
   map1.set(8, 'Very Good');
   map1.set(9, 'Excellent');
@@ -9,7 +9,7 @@ function HotelsList({ hotels, days, chkin, chkout }) {
     return (
       <div key={hotel.id}>
         <Link
-          to={`/hotels/${hotel.to}?chkin=${chkin}&chkout=${chkout}`}
+          to={`/hotels/${hotel.to}?chkin=${chkin}&chkout=${chkout}&trvlrs=${travelers}`}
           target="_blank"
           className="link"
         >

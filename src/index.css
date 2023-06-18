@@ -8,7 +8,6 @@ html {
 .hotels {
   margin: auto;
   max-width: 900px;
-  max-height: fit-content;
 }
 .hotels-datepickers {
   margin-left: 215px;
@@ -348,7 +347,7 @@ th {
   align-items: center;
   gap: 10px;
 }
-.popup-content {
+.tooltip-container {
   margin: auto;
   background: rgb(255, 255, 255);
   padding: 5px;
@@ -357,4 +356,16 @@ th {
   border: 1px solid white;
   border-radius: 5px;
   box-shadow: 4px 4px 9px #c8c8c8;
+}
+
+.react-datepicker {
+  font-size: 13px;
+}
+
+.mydatepicker {
+}
+
+.hotel-datepickers {
+  display: flex;
+  background-color: white;
 }
