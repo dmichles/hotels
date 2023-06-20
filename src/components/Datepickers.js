@@ -64,6 +64,7 @@ function Datepickers() {
         </div>
         <div>
           <ReactDatePicker
+            className="mydatepicker"
             showIcon
             minDate={minEndDate}
             selectsEnd

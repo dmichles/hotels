@@ -11,6 +11,7 @@ import { endDateActions } from '../store/slices/endDate-slice';
 import { startDateActions } from '../store/slices/startDate-slice';
 import { daysSliceActions } from '../store/slices/days-slice';
 import Travelers from '../components/Travelers';
+import RadioButtons from '../components/RadioButtonsFilter';
 
 function HotelsPage() {
   const stars = useSelector(state => state.stars);
@@ -67,7 +68,12 @@ function HotelsPage() {
 
     hotels = hotels.filter(hotel => {
       for (let i = 0; i < hotel.rooms.length; i++) {
-        if (travelers <= Number(hotel.rooms[i].people)) {
+        if (
+          travelers <= Number(hotel.rooms[i].people) &&
+          hotel.rooms[i].price >= minValue &&
+          hotel.rooms[i].price <=
+            (maxValue === 2000 ? Number.MAX_VALUE : maxValue)
+        ) {
           console.log(hotel.name, hotel.rooms[i].price);
           hotel.price = hotel.rooms[i].price;
           return true;
@@ -76,13 +82,6 @@ function HotelsPage() {
       return false;
     });
 
-    hotels = hotels.filter(hotel => {
-      return (
-        hotel.rooms[0].price >= minValue &&
-        hotel.rooms[0].price <=
-          (maxValue === 2000 ? Number.MAX_VALUE : maxValue)
-      );
-    });
     if (popularFilter.length > 0) {
       hotels = hotels.filter(hotel => {
         let result = false;
@@ -125,6 +124,9 @@ function HotelsPage() {
             <div>
               <SliderFilter />
             </div>
+            <div>
+              <RadioButtons />
+            </div>
           </div>
           <HotelsList
             hotels={hotels}
@@ -132,6 +134,8 @@ function HotelsPage() {
             chkin={DateTime.fromJSDate(startDate).toISODate()}
             chkout={DateTime.fromJSDate(endDate).toISODate()}
             travelers={travelers}
+            minPrice={minValue}
+            maxPrice={maxValue}
           />
         </div>
       </div>

@@ -1,6 +1,14 @@
 import { Link } from 'react-router-dom';
 
-function HotelsList({ hotels, days, chkin, chkout, travelers }) {
+function HotelsList({
+  hotels,
+  days,
+  chkin,
+  chkout,
+  travelers,
+  minPrice,
+  maxPrice,
+}) {
   const map1 = new Map();
   map1.set(8, 'Very Good');
   map1.set(9, 'Excellent');
@@ -9,13 +17,13 @@ function HotelsList({ hotels, days, chkin, chkout, travelers }) {
     return (
       <div key={hotel.id}>
         <Link
-          to={`/hotels/${hotel.to}?chkin=${chkin}&chkout=${chkout}&trvlrs=${travelers}`}
+          to={`/hotels/${hotel.to}?chkin=${chkin}&chkout=${chkout}&trvlrs=${travelers}&minPrice=${minPrice}&maxPrice=${maxPrice}`}
           target="_blank"
           className="link"
         >
           <div className="hotel-show">
-            <div className="hotel-show-img">
-              <img src={hotel.picUrl} alt="" />
+            <div>
+              <img className="hotel-show-img" src={hotel.picUrl} alt="" />
             </div>
             <div className="hotel-show-data">
               <div>

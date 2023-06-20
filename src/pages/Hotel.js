@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { endDateActions } from '../store/slices/endDate-slice';
@@ -15,6 +15,8 @@ import {
 import { daysSliceActions } from '../store/slices/days-slice';
 import { travelersActions } from '../store/slices/travelers-slice';
 import Travelers from '../components/Travelers';
+import { minValueActions } from '../store/slices/minValue-slice';
+import { maxValueActions } from '../store/slices/maxValue-slice';
 
 function HotelPage() {
   const params = useParams();
@@ -27,7 +29,17 @@ function HotelPage() {
     dispatch(startDateActions.setStartDate(queryParameters.get('chkin')));
     dispatch(endDateActions.setEndDate(queryParameters.get('chkout')));
 
-    dispatch(travelersActions.setTravelers(queryParameters.get('trvlrs')));
+    dispatch(
+      travelersActions.setTravelers(Number(queryParameters.get('trvlrs')))
+    );
+
+    dispatch(
+      minValueActions.setMinValue(Number(queryParameters.get('minPrice')))
+    );
+
+    dispatch(
+      maxValueActions.setMaxValue(Number(queryParameters.get('maxPrice')))
+    );
   }, []);
 
   const days = useSelector(state => state.days.value);
@@ -40,6 +52,8 @@ function HotelPage() {
   ).toJSDate();
 
   const travelers = useSelector(state => state.travelers.value);
+  const minPrice = useSelector(state => state.minValue.value);
+  const maxPrice = useSelector(state => state.maxValue.value);
 
   const start = DateTime.fromJSDate(startDate);
 
@@ -65,7 +79,7 @@ function HotelPage() {
     hotel = data;
 
     hotelInfo = (
-      <div>
+      <div className="hotel-heading">
         <HotelInfo
           name={hotel.name}
           stars={hotel.stars}
@@ -123,8 +137,14 @@ function HotelPage() {
   } else if (fetchedRooms.error) {
     console.log('Error loading data');
   } else {
+    console.log(Number(maxPrice) === 2000);
     const rooms = fetchedRooms.data.filter(room => {
-      if (travelers <= Number(room.people)) {
+      console.log(room.type, room.price);
+      if (
+        travelers <= Number(room.people) &&
+        room.price >= minPrice &&
+        room.price <= (maxPrice === 2000 ? Number.MAX_VALUE : maxPrice)
+      ) {
         return true;
       }
       return false;

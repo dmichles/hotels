@@ -12,6 +12,7 @@ html {
 .hotels-datepickers {
   margin-left: 215px;
   display: flex;
+  border-radius: 25px;
 }
 .hotels-filter {
   width: 260px;
@@ -61,7 +62,6 @@ html {
   display: flex;
   border: 1px solid gray;
   border-radius: 5px;
-  padding: 5px;
   height: 220px;
   width: 670px;
   align-self: flex-start;
@@ -71,6 +71,7 @@ html {
   color: black;
   background-color: white;
   gap: 10px;
+  overflow: hidden;
 }
 
 .hotel-show h2 {
@@ -99,6 +100,7 @@ html {
   justify-content: flex-end;
   align-items: center;
   gap: 5px;
+  margin-bottom: 5px;
 }
 
 .hotel-show-footer-rating-number {
@@ -113,7 +115,8 @@ html {
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  margin: none;
+  margin-bottom: 5px;
+  margin-right: 5px;
 }
 
 .hotel-show-footer-price-room {
@@ -124,7 +127,7 @@ html {
   margin-top: 3px;
   font-size: 13px;
 }
-img {
+.hotel-show-img {
   height: 220px;
   width: 250px;
 }
@@ -150,9 +153,14 @@ img {
   margin-left: 5px;
 }
 
+.hotel-datepickers {
+  border-radius: 5px;
+}
+
 .heading {
   color: black;
   background-color: white;
+  border-radius: 5px;
 }
 .header {
   font-size: 40px;
@@ -202,29 +210,34 @@ img {
 .room-list {
   display: flex;
   flex-wrap: wrap;
+  width: 900px;
 }
 
 .room-show {
+  display: flex;
+  flex-direction: column;
   border: 1px solid #ced4da;
-  border-radius: 5px;
+  border-radius: 10px;
   margin: 5px;
-  padding: 5px;
-  width: 300px;
+  /* padding: 5px; */
+  width: 305px;
+  height: 400px;
   align-self: flex-start;
   box-shadow: 0 0 4px #c8c8c8;
   position: relative;
   color: black;
   background-color: white;
+  overflow: hidden;
 }
 
 .room-show h2 {
   font-size: 16px;
 }
 
-.room-show img {
-  margin-top: 5px;
+.room-show-img {
+  position: relative;
   height: 250px;
-  width: 300px;
+  width: 305px;
 }
 
 .room-type {
@@ -340,10 +353,10 @@ th {
 .travelers-box {
   font-size: 14px;
   display: flex;
-  border: 1px solid gray;
-  border-radius: 2px;
-  width: 178px;
-  height: 28px;
+  border: 2px solid black;
+  border-radius: 5px;
+  width: 236px;
+  height: 26.5px;
   align-items: center;
   gap: 10px;
 }
@@ -363,9 +376,46 @@ th {
 }
 
 .mydatepicker {
+  border-radius: 5px;
+  border: 2px solid black;
+  width: 170px;
 }
 
 .hotel-datepickers {
   display: flex;
   background-color: white;
+}
+
+.multi-range-slider .caption {
+  position: absolute;
+  bottom: 33px;
+  width: 2px;
+  height: 2px;
+  left: 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
+  display: none;
+}
+.multi-range-slider .thumb .caption * {
+  position: absolute;
+  min-width: 30px;
+  height: 30px;
+  font-size: 75%;
+  text-align: center;
+  line-height: 30px;
+  background-color: #868e96;
+  border-radius: 15px;
+  color: black;
+  box-shadow: 0px 0px 5px black;
+  padding: 0px 5px;
+  white-space: nowrap;
+}
+
+.radio-buttons-filter {
+  margin-top: 30px;
+}
+.label {
+  font-size: 15px;
 }

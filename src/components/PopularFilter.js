@@ -63,7 +63,9 @@ function PopularFilter() {
           onChange={() => handleChange1(!checked1)}
           checked={checked1}
         />
-        <label htmlFor="checkbox1">Pool</label>
+        <label htmlFor="checkbox1" className="label">
+          Pool
+        </label>
       </div>
       <div>
         <input
@@ -72,7 +74,9 @@ function PopularFilter() {
           onChange={() => handleChange2(!checked2)}
           checked={checked2}
         />
-        <label htmlFor="checkbox2">Pet friendly</label>
+        <label htmlFor="checkbox2" className="label">
+          Pet friendly
+        </label>
       </div>
       <div>
         <input
@@ -81,7 +85,9 @@ function PopularFilter() {
           onChange={() => handleChange3(!checked3)}
           checked={checked3}
         />
-        <label htmlFor="checkbox3">Parking</label>
+        <label htmlFor="checkbox3" className="label">
+          Parking
+        </label>
       </div>
       <div>
         <input
@@ -90,7 +96,9 @@ function PopularFilter() {
           onChange={() => handleChange4(!checked4)}
           checked={checked4}
         />
-        <label htmlFor="checkbox4">Spa</label>
+        <label htmlFor="checkbox4" className="label">
+          Spa
+        </label>
       </div>
     </div>
   );

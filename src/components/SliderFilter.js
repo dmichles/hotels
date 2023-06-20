@@ -26,6 +26,7 @@ function SliderFilter() {
         Price per night
       </div>
       <MultiRangeSlider
+        baseClassName="multi-range-slider"
         ruler={false}
         style={{ border: 'none', boxShadow: 'none', color: 'white' }}
         barInnerColor="#f0f0f0"
