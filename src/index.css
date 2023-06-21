@@ -10,7 +10,7 @@ html {
   max-width: 900px;
 }
 .hotels-datepickers {
-  margin-left: 215px;
+  margin-left: 214px;
   display: flex;
   border-radius: 25px;
 }
@@ -355,18 +355,19 @@ th {
   display: flex;
   border: 2px solid black;
   border-radius: 5px;
-  width: 236px;
+  width: 238px;
   height: 26.5px;
   align-items: center;
   gap: 10px;
+  background-color: white;
 }
 .tooltip-container {
   margin: auto;
   background: rgb(255, 255, 255);
   padding: 5px;
-  width: 200px;
-  height: 130px;
-  border: 1px solid white;
+  width: 220px;
+  height: 170px;
+  border: 1px solid #c8c8c8;
   border-radius: 5px;
   box-shadow: 4px 4px 9px #c8c8c8;
 }

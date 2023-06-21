@@ -6,8 +6,6 @@ import { IconContext } from 'react-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { travelersActions } from '../store/slices/travelers-slice';
 
-import ReactDOM from 'react-dom';
-
 function Travelers() {
   const [open, setOpen] = useState(false);
   const [counter, setCounter] = useState(2);
@@ -17,6 +15,7 @@ function Travelers() {
   const { getArrowProps, getTooltipProps, setTooltipRef, setTriggerRef } =
     usePopperTooltip({
       interactive: 'true',
+      offset: [0, 9],
     });
 
   const ref1 = useRef();
@@ -79,7 +78,8 @@ function Travelers() {
             {...getTooltipProps({ className: 'tooltip-container' })}
           >
             <div {...getArrowProps({ className: 'tooltip-arrow' })} />
-            <div style={{ marginTop: '10px' }}>
+            <div style={{ marginTop: '10px' }}>Room 1</div>
+            <div style={{ marginTop: '25px' }}>
               <div
                 style={{
                   display: 'flex',
@@ -88,7 +88,7 @@ function Travelers() {
                   marginTop: '15px',
                 }}
               >
-                <div style={{ marginTop: '15px', fontSize: '13px' }}>
+                <div style={{ marginTop: '10px', fontSize: '13px' }}>
                   Adults
                 </div>
                 <div
@@ -104,7 +104,7 @@ function Travelers() {
                         borderRadius: '50px',
                         height: '25px',
                         width: '25px',
-                        marginTop: '15px',
+                        marginTop: '10px',
                       }}
                       onClick={() =>
                         handleClick(counter === 1 ? 1 : counter - 1)
@@ -115,7 +115,7 @@ function Travelers() {
                   </div>
                   <div
                     style={{
-                      marginTop: '15px',
+                      marginTop: '10px',
                       fontSize: '13px',
                       marginLeft: '10px',
                     }}
@@ -128,7 +128,7 @@ function Travelers() {
                         borderRadius: '50px',
                         height: '25px',
                         width: '25px',
-                        marginTop: '15px',
+                        marginTop: '10px',
                         marginLeft: '10px',
                       }}
                       onClick={() => handleClick(counter + 1)}
@@ -139,7 +139,7 @@ function Travelers() {
                 </div>
               </div>
               <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <div style={{ marginTop: '20px' }}>
+                <div style={{ marginTop: '15px' }}>
                   <button className="btn-done" onClick={handleDone}>
                     Done
                   </button>

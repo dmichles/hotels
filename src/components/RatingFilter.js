@@ -1,9 +1,13 @@
-import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { ratingActions } from '../store/slices/rating-sice';
 
-function RadioButtonsFilter() {
-  const [value, setValue] = useState('Any');
+function RatingFilter() {
+  const dispatch = useDispatch();
+  const rating = useSelector(state => state.rating.value);
+
   const handleChange = event => {
-    setValue(event.target.value);
+    dispatch(ratingActions.setRating(event.target.value));
+
     console.log(event.target.value);
   };
 
@@ -17,7 +21,7 @@ function RadioButtonsFilter() {
           type="radio"
           value="Any"
           name="rating"
-          checked={value === 'Any'}
+          checked={rating === 'Any'}
           onChange={handleChange}
         ></input>
         <label htmlFor="Any" className="label">
@@ -29,7 +33,7 @@ function RadioButtonsFilter() {
           type="radio"
           value="Excellent 9+"
           name="rating"
-          checked={value === 'Excellent 9+'}
+          checked={rating === 'Excellent 9+'}
           onChange={handleChange}
         ></input>
         <label htmlFor="Excellent 9+" className="label">
@@ -41,7 +45,7 @@ function RadioButtonsFilter() {
           type="radio"
           value="Very good 8+"
           name="rating"
-          checked={value === 'Very good 8+'}
+          checked={rating === 'Very good 8+'}
           onChange={handleChange}
         ></input>
         <label htmlFor="Very good 8+" className="label">
@@ -51,4 +55,4 @@ function RadioButtonsFilter() {
     </div>
   );
 }
-export default RadioButtonsFilter;
+export default RatingFilter;

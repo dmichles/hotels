@@ -11,16 +11,20 @@ import { endDateActions } from '../store/slices/endDate-slice';
 import { startDateActions } from '../store/slices/startDate-slice';
 import { daysSliceActions } from '../store/slices/days-slice';
 import Travelers from '../components/Travelers';
-import RadioButtons from '../components/RadioButtonsFilter';
+import RatingFilter from '../components/RatingFilter';
 
 function HotelsPage() {
   const stars = useSelector(state => state.stars);
   const popularFilter = useSelector(state => state.popularFilter);
-
+  const rating = useSelector(state => state.rating.value);
   const minValue = useSelector(state => state.minValue.value);
   const maxValue = useSelector(state => state.maxValue.value);
   const travelers = useSelector(state => state.travelers.value);
   const dispatch = useDispatch();
+
+  const mapRating = new Map();
+  mapRating.set('Very good 8+', 8);
+  mapRating.set('Excellent 9+', 9);
 
   // useEffect(() => {
   //   dispatch(
@@ -101,6 +105,9 @@ function HotelsPage() {
     if (stars.length > 0) {
       hotels = hotels.filter(hotel => stars.includes(hotel.stars));
     }
+    if (rating !== 'Any') {
+      hotels = hotels.filter(hotel => hotel.rating >= mapRating.get(rating));
+    }
 
     return (
       <div className="hotels">
@@ -125,7 +132,7 @@ function HotelsPage() {
               <SliderFilter />
             </div>
             <div>
-              <RadioButtons />
+              <RatingFilter />
             </div>
           </div>
           <HotelsList

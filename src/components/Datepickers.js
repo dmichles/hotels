@@ -45,7 +45,6 @@ function Datepickers() {
           <ReactDatePicker
             className="mydatepicker"
             showIcon
-            dateFormat={['MM/dd/yyyy', 'MM/dd/yyyy']}
             monthsShown={2}
             minDate={new Date()}
             selectsStart

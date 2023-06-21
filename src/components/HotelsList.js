@@ -12,7 +12,6 @@ function HotelsList({
   const map1 = new Map();
   map1.set(8, 'Very Good');
   map1.set(9, 'Excellent');
-  map1.set(10, 'Wonderful');
   const renderedHotels = hotels.map(hotel => {
     return (
       <div key={hotel.id}>
@@ -35,7 +34,7 @@ function HotelsList({
                   <div className="hotel-show-footer-rating-number">
                     {hotel.rating}
                   </div>
-                  <div>{map1.get(Math.round(Number(hotel.rating)))}</div>
+                  <div>{map1.get(Math.floor(Number(hotel.rating)))}</div>
                 </div>
                 <div className="hotel-show-footer-price">
                   <div className="hotel-show-footer-price-room">

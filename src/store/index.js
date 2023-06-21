@@ -9,6 +9,7 @@ import minValueSlice from './slices/minValue-slice';
 import maxValueSlice from './slices/maxValue-slice';
 import daysSlice from './slices/days-slice';
 import travelersSlice from './slices/travelers-slice';
+import ratingSlice from './slices/rating-sice';
 
 const store = configureStore({
   reducer: {
@@ -22,6 +23,7 @@ const store = configureStore({
     maxValue: maxValueSlice.reducer,
     days: daysSlice.reducer,
     travelers: travelersSlice.reducer,
+    rating: ratingSlice.reducer,
   },
   middleware: getDefaultMiddleware => {
     return getDefaultMiddleware().concat(
