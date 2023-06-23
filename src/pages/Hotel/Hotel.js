@@ -1,22 +1,23 @@
 import { useEffect } from 'react';
 import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { endDateActions } from '../store/slices/endDate-slice';
-import { startDateActions } from '../store/slices/startDate-slice';
-import HotelInfo from '../components/HotelInfo';
-import Datepickers from '../components/Datepickers';
-import Room from '../components/Room';
 import { DateTime } from 'luxon';
+import { endDateActions } from '../../store/slices/endDate-slice';
+import { startDateActions } from '../../store/slices/startDate-slice';
+import HotelHeader from '../../components/HotelHeader/HotelHeader';
+import Datepickers from '../../components/Datepickers/Datepickers';
+import Travelers from '../../components/Travelers/Travelers';
+import Room from '../../components/Room/Room';
 import {
   useFetchHotelQuery,
   useFetchRoomsQuery,
   useAddReservationMutation,
-} from '../store';
-import { daysSliceActions } from '../store/slices/days-slice';
-import { travelersActions } from '../store/slices/travelers-slice';
-import Travelers from '../components/Travelers';
-import { minValueActions } from '../store/slices/minValue-slice';
-import { maxValueActions } from '../store/slices/maxValue-slice';
+} from '../../store';
+import { daysSliceActions } from '../../store/slices/days-slice';
+import { travelersActions } from '../../store/slices/travelers-slice';
+import { minPriceActions } from '../../store/slices/minPrice-slice';
+import { maxPriceActions } from '../../store/slices/maxPrice-slice';
+import './hotel.css';
 
 function HotelPage() {
   const params = useParams();
@@ -34,11 +35,11 @@ function HotelPage() {
     );
 
     dispatch(
-      minValueActions.setMinValue(Number(queryParameters.get('minPrice')))
+      minPriceActions.setMinValue(Number(queryParameters.get('minPrice')))
     );
 
     dispatch(
-      maxValueActions.setMaxValue(Number(queryParameters.get('maxPrice')))
+      maxPriceActions.setMaxValue(Number(queryParameters.get('maxPrice')))
     );
   }, []);
 
@@ -52,8 +53,8 @@ function HotelPage() {
   ).toJSDate();
 
   const travelers = useSelector(state => state.travelers.value);
-  const minPrice = useSelector(state => state.minValue.value);
-  const maxPrice = useSelector(state => state.maxValue.value);
+  const minPrice = useSelector(state => state.minPrice.value);
+  const maxPrice = useSelector(state => state.maxPrice.value);
 
   const start = DateTime.fromJSDate(startDate);
 
@@ -79,8 +80,8 @@ function HotelPage() {
     hotel = data;
 
     hotelInfo = (
-      <div className="hotel-heading">
-        <HotelInfo
+      <div>
+        <HotelHeader
           name={hotel.name}
           stars={hotel.stars}
           amenities={hotel.amenities}
@@ -161,7 +162,7 @@ function HotelPage() {
     <div className="hotel">
       {hotelInfo}
       <div>
-        <div className="subheader">Choose your room</div>
+        <div>Choose your room</div>
         <div className="hotel-datepickers">
           <Datepickers />
           <Travelers />

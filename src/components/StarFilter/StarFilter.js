@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaStar } from 'react-icons/fa';
-import { starsActions } from '../store/slices/stars-slice';
+import { starsActions } from '../../store/slices/stars-slice';
+import './starfilter.css';
 
 function StarFilter() {
   const [clicked4, setClicked4] = useState(false);
@@ -44,9 +45,7 @@ function StarFilter() {
 
   return (
     <div>
-      <div style={{ marginBottom: '15px', fontWeight: 'bold' }}>
-        Star rating
-      </div>
+      <div className="title">Star rating</div>
       <button
         onClick={() => {
           handleClick4(!clicked4);

@@ -1,0 +1,25 @@
+.hotels {
+  margin: auto;
+  max-width: 900px;
+}
+.hotels-datepickers {
+  margin-left: 217px;
+  display: flex;
+  border-radius: 25px;
+  gap: 5px;
+}
+.hotels-filter {
+  width: 260px;
+  margin: 10px;
+}
+
+.hotels-filter-heading {
+  font-size: 20px;
+  font-weight: 800;
+  margin-top: 20px;
+  margin-bottom: 17px;
+}
+
+.hotels-content {
+  display: flex;
+}

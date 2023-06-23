@@ -11,8 +11,9 @@ import { MdSpa } from 'react-icons/md';
 import { MdPool } from 'react-icons/md';
 import { MdPets } from 'react-icons/md';
 import { FaCocktail } from 'react-icons/fa';
+import './hotelheader.css';
 
-function HotelInfo({ name, stars, amenities, rating }) {
+function HotelHeader({ name, stars, amenities, rating }) {
   const map1 = new Map();
   map1.set('Gym', <CgGym />);
   map1.set('Free WiFi', <RiWifiFill />);
@@ -40,13 +41,13 @@ function HotelInfo({ name, stars, amenities, rating }) {
   }
 
   const renderedHeader = (
-    <div className="heading">
-      <div className="header">{name} New York</div>
+    <div className="header-container">
+      <div className="header-container-title">{name} New York</div>
       {renderedStars}
-      <div style={{ marginTop: '10px' }}>
+      <div className="header-container-rating">
         {rating}/10 {map2.get(Math.round(Number(rating)))}
       </div>
-      <div className="subheader">Popular amenities</div>
+      <div className="header-container-amenities-title">Popular amenities</div>
       <div className="icons-list">
         <div>
           <div className="icons">
@@ -82,4 +83,4 @@ function HotelInfo({ name, stars, amenities, rating }) {
   return <div>{renderedHeader}</div>;
 }
 
-export default HotelInfo;
+export default HotelHeader;

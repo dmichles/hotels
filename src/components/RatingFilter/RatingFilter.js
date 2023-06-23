@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { ratingActions } from '../store/slices/rating-sice';
+import { ratingActions } from '../../store/slices/rating-sice';
+import './ratingfilter.css';
 
 function RatingFilter() {
   const dispatch = useDispatch();
@@ -12,11 +13,9 @@ function RatingFilter() {
   };
 
   return (
-    <div className="radio-buttons-filter">
-      <div style={{ fontWeight: 'bold', marginBottom: '15px' }}>
-        Guest rating
-      </div>
-      <div style={{ marginBottom: '5px' }}>
+    <div className="rating-filter">
+      <div className="title">Guest rating</div>
+      <div className="radio-button-container">
         <input
           type="radio"
           value="Any"
@@ -28,7 +27,7 @@ function RatingFilter() {
           Any
         </label>
       </div>
-      <div style={{ marginBottom: '5px' }}>
+      <div className="radio-button-container">
         <input
           type="radio"
           value="Excellent 9+"
@@ -40,7 +39,7 @@ function RatingFilter() {
           Excellent 9+
         </label>
       </div>
-      <div style={{ marginBottom: '5px' }}>
+      <div className="radio-button-container">
         <input
           type="radio"
           value="Very good 8+"

@@ -1,24 +1,25 @@
-import { useFetchHotelsQuery } from '../store';
+import { useFetchHotelsQuery } from '../../store';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { DateTime } from 'luxon';
-import StarFilter from '../components/StarFilter';
-import PopularFilter from '../components/PopularFilter';
-import SliderFilter from '../components/SliderFilter';
-import HotelsList from '../components/HotelsList';
-import Datepickers from '../components/Datepickers';
-import { endDateActions } from '../store/slices/endDate-slice';
-import { startDateActions } from '../store/slices/startDate-slice';
-import { daysSliceActions } from '../store/slices/days-slice';
-import Travelers from '../components/Travelers';
-import RatingFilter from '../components/RatingFilter';
+import StarFilter from '../../components/StarFilter/StarFilter';
+import PopularFilter from '../../components/PopularFilter/PopularFilter';
+import PriceFilter from '../../components/PriceFilter/PriceFilter';
+import HotelsList from '../../components/HotelsList/HotelsList';
+import Datepickers from '../../components/Datepickers/Datepickers';
+import { endDateActions } from '../../store/slices/endDate-slice';
+import { startDateActions } from '../../store/slices/startDate-slice';
+import { daysSliceActions } from '../../store/slices/days-slice';
+import Travelers from '../../components/Travelers/Travelers';
+import RatingFilter from '../../components/RatingFilter/RatingFilter';
+import './hotels.css';
 
 function HotelsPage() {
   const stars = useSelector(state => state.stars);
   const popularFilter = useSelector(state => state.popularFilter);
   const rating = useSelector(state => state.rating.value);
-  const minValue = useSelector(state => state.minValue.value);
-  const maxValue = useSelector(state => state.maxValue.value);
+  const minPrice = useSelector(state => state.minPrice.value);
+  const maxPrice = useSelector(state => state.maxPrice.value);
   const travelers = useSelector(state => state.travelers.value);
   const dispatch = useDispatch();
 
@@ -74,9 +75,9 @@ function HotelsPage() {
       for (let i = 0; i < hotel.rooms.length; i++) {
         if (
           travelers <= Number(hotel.rooms[i].people) &&
-          hotel.rooms[i].price >= minValue &&
+          hotel.rooms[i].price >= minPrice &&
           hotel.rooms[i].price <=
-            (maxValue === 2000 ? Number.MAX_VALUE : maxValue)
+            (maxPrice === 2000 ? Number.MAX_VALUE : maxPrice)
         ) {
           console.log(hotel.name, hotel.rooms[i].price);
           hotel.price = hotel.rooms[i].price;
@@ -119,7 +120,7 @@ function HotelsPage() {
             <Travelers />
           </div>
         </div>
-        <div style={{ display: 'flex' }}>
+        <div className="hotels-content">
           <div className="hotels-filter">
             <div className="hotels-filter-heading">Filter by</div>
             <div>
@@ -129,7 +130,7 @@ function HotelsPage() {
               <PopularFilter />
             </div>
             <div>
-              <SliderFilter />
+              <PriceFilter />
             </div>
             <div>
               <RatingFilter />
@@ -141,8 +142,8 @@ function HotelsPage() {
             chkin={DateTime.fromJSDate(startDate).toISODate()}
             chkout={DateTime.fromJSDate(endDate).toISODate()}
             travelers={travelers}
-            minPrice={minValue}
-            maxPrice={maxValue}
+            minPrice={minPrice}
+            maxPrice={maxPrice}
           />
         </div>
       </div>

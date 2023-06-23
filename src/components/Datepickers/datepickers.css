@@ -1,0 +1,18 @@
+.datepickers {
+  display: flex;
+  gap: 5px;
+}
+.datepickers-label {
+  color: black;
+}
+
+.react-datepicker {
+  font-size: 13px;
+}
+
+.datepickers-mydatepicker {
+  border-radius: 5px;
+  border: 2px solid black;
+  width: 170px;
+  background-color: white;
+}

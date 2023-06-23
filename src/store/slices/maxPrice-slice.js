@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const maxValueSlice = createSlice({
-  name: 'maxValue',
+const maxPriceSlice = createSlice({
+  name: 'maxPrice',
   initialState: { value: 2000 },
   reducers: {
     setMaxValue(state, action) {
@@ -10,5 +10,5 @@ const maxValueSlice = createSlice({
   },
 });
 
-export default maxValueSlice;
-export const maxValueActions = maxValueSlice.actions;
+export default maxPriceSlice;
+export const maxPriceActions = maxPriceSlice.actions;

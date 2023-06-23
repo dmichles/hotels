@@ -1,10 +1,10 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import RootLayout from './pages/Root';
 import HomePage from './pages/Home';
-import HotelsPage from './pages/Hotels';
-import HotelPage from './pages/Hotel';
-import ReservationPage from './pages/Reservation';
-import ReservationsPage from './pages/Reservations';
+import HotelsPage from './pages/Hotels/Hotels';
+import HotelPage from './pages/Hotel/Hotel';
+import ReservationPage from './pages/Reservation/Reservation';
+import ReservationsPage from './pages/Reservations/Reservations';
 
 const router = createBrowserRouter([
   {

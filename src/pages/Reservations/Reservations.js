@@ -1,7 +1,7 @@
 import {
   useFetchReservationsQuery,
   useDeleteReservationMutation,
-} from '../store';
+} from '../../store';
 
 const ReservationsPage = () => {
   const [deleteReservation, results] = useDeleteReservationMutation();

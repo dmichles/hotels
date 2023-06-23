@@ -9,7 +9,7 @@ function ReservationPage() {
     <div className="reservation">
       {/* {searchParams.get('start')}-{searchParams.get('end')}
       {searchParams.get('type')} */}
-      <div style={{ fontSize: 25 }}>Reservation confirmation</div>
+      <div className="title">Reservation confirmation</div>
       <img src={url} alt="" />
       <div>Reservation number: {id}</div>
       <div>Check-in: {start}</div>

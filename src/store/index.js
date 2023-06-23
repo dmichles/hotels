@@ -5,8 +5,8 @@ import startDateSlice from './slices/startDate-slice';
 import endDateSlice from './slices/endDate-slice';
 import starsSlice from './slices/stars-slice';
 import popularFilterSlice from './slices/popularFilter-slice';
-import minValueSlice from './slices/minValue-slice';
-import maxValueSlice from './slices/maxValue-slice';
+import minPriceSlice from './slices/minPrice-slice';
+import maxPriceSlice from './slices/maxPrice-slice';
 import daysSlice from './slices/days-slice';
 import travelersSlice from './slices/travelers-slice';
 import ratingSlice from './slices/rating-sice';
@@ -19,8 +19,8 @@ const store = configureStore({
     endDate: endDateSlice.reducer,
     stars: starsSlice.reducer,
     popularFilter: popularFilterSlice.reducer,
-    minValue: minValueSlice.reducer,
-    maxValue: maxValueSlice.reducer,
+    minPrice: minPriceSlice.reducer,
+    maxPrice: maxPriceSlice.reducer,
     days: daysSlice.reducer,
     travelers: travelersSlice.reducer,
     rating: ratingSlice.reducer,

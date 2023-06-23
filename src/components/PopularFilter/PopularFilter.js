@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { popularFilterActions } from '../store/slices/popularFilter-slice';
+import { popularFilterActions } from '../../store/slices/popularFilter-slice';
+import './popularfilter.css';
 
 function PopularFilter() {
   const [checked1, setChecked1] = useState(false);
@@ -51,11 +52,7 @@ function PopularFilter() {
 
   return (
     <div>
-      <div
-        style={{ marginTop: '20px', marginBottom: '15px', fontWeight: 'bold' }}
-      >
-        Popular filters
-      </div>
+      <div className="title">Popular filters</div>
       <div>
         <input
           type="checkbox"

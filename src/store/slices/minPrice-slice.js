@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const minValueSlice = createSlice({
-  name: 'minValue',
+const minPriceSlice = createSlice({
+  name: 'minPrice',
   initialState: { value: 0 },
   reducers: {
     setMinValue(state, action) {
@@ -10,5 +10,5 @@ const minValueSlice = createSlice({
   },
 });
 
-export default minValueSlice;
-export const minValueActions = minValueSlice.actions;
+export default minPriceSlice;
+export const minPriceActions = minPriceSlice.actions;

@@ -1,6 +1,7 @@
 import { MdSquareFoot } from 'react-icons/md';
 import { BsFillPeopleFill } from 'react-icons/bs';
 import { FaBed } from 'react-icons/fa';
+import './room.css';
 
 function Room({ room, days, onReserve }) {
   const handleReserve = () => {
@@ -12,7 +13,7 @@ function Room({ room, days, onReserve }) {
       <div>
         <img className="room-show-img" src={room.picUrl} alt="" />
       </div>
-      <div style={{ marginLeft: '5px', marginRight: '5px' }}>
+      <div className="room-data">
         <div className="room-type">{room.type}</div>
         <div className="icons">
           <div>

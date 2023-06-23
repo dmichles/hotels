@@ -1,0 +1,37 @@
+.header-container {
+  color: black;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.header-container-title {
+  font-size: 40px;
+}
+
+.header-container-rating {
+  margin-top: 10px;
+}
+
+.header-container-amenities-title {
+  font-size: 20px;
+  color: black;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+.icons-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 500px;
+}
+
+.icons {
+  display: flex;
+  color: black;
+}
+
+.icon {
+  font-size: 14px;
+  color: #868e96;
+  margin-left: 5px;
+}

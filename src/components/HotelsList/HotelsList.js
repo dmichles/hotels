@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import './hotelslist.css';
 
 function HotelsList({
   hotels,
@@ -26,21 +27,21 @@ function HotelsList({
             </div>
             <div className="hotel-show-data">
               <div>
-                <h2 style={{ marginBottom: '3px' }}>{hotel.name}</h2>
-                <h5 style={{ marginTop: '1px', color: 'gray' }}>New York</h5>
+                <h2 className="hotel-show-data-name">{hotel.name}</h2>
+                <h5 className="hotel-show-data-location">New York</h5>
               </div>
-              <div className="hotel-show-footer">
-                <div className="hotel-show-footer-rating">
-                  <div className="hotel-show-footer-rating-number">
+              <div className="hotel-show-data-footer">
+                <div className="hotel-show-data-footer-rating-container">
+                  <div className="hotel-show-data-footer-rating">
                     {hotel.rating}
                   </div>
                   <div>{map1.get(Math.floor(Number(hotel.rating)))}</div>
                 </div>
-                <div className="hotel-show-footer-price">
-                  <div className="hotel-show-footer-price-room">
+                <div className="hotel-show-data-footer-price-container">
+                  <div className="hotel-show-data-footer-price">
                     ${hotel.price}
                   </div>
-                  <div className="hotel-show-footer-price-total">
+                  <div className="hotel-show-data-footer-price-total">
                     ${hotel.price * days} total
                   </div>
                 </div>

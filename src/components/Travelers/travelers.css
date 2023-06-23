@@ -1,0 +1,94 @@
+.travelers-box {
+  font-size: 14px;
+  display: flex;
+  border: 2px solid black;
+  border-radius: 5px;
+  width: 238px;
+  height: 26.5px;
+  align-items: center;
+  gap: 10px;
+  background-color: white;
+}
+
+.travelers-label {
+  color: black;
+}
+
+.travelers-box-icon {
+  vertical-align: middle;
+}
+
+.tooltip-container {
+  margin: auto;
+  background: rgb(255, 255, 255);
+  padding: 5px;
+  width: 220px;
+  height: 170px;
+  border: 1px solid #c8c8c8;
+  border-radius: 5px;
+  box-shadow: 4px 4px 9px #c8c8c8;
+}
+
+.tooltip-container-title {
+  margin-top: 10px;
+  font-weight: 700;
+}
+
+.tooltip-container-content-wrapper {
+  margin-top: 25px;
+}
+
+.tooltip-container-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 25px;
+}
+
+.tooltip-container-content-title {
+  font-size: 13px;
+}
+
+.tooltip-container-buttons-container-wrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.tooltip-container-increment-button {
+  border-radius: 50px;
+  height: 25px;
+  width: 25px;
+}
+
+.tooltip-container-decrement-button {
+  border-radius: 50px;
+  height: 25px;
+  width: 25px;
+  margin-left: 10px;
+}
+
+.tooltip-container-counter {
+  margin-left: 10px;
+  font-size: 13px;
+}
+
+.tooltip-container-done-button-wrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.tooltip-container-done-button-container {
+  margin-top: 15px;
+}
+
+.tooltip-container-done-button {
+  font-size: 16px;
+  color: white;
+  background-color: #1971c2;
+  border-radius: 30px;
+  padding: 10px;
+  border: 0px;
+  cursor: pointer;
+  width: 70px;
+}

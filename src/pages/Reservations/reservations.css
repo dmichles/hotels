@@ -1,0 +1,40 @@
+.reservations {
+  margin: auto;
+  max-width: 900px;
+}
+.reservations h1 {
+  text-align: left;
+  font-size: 25px;
+}
+
+table {
+  display: grid;
+  min-width: 100%;
+  grid-template-columns:
+    minmax(150px, 1.67fr) minmax(150px, 1.67fr)
+    minmax(150px, 3.33fr) minmax(150px, 1.67fr) minmax(150px, 1.67fr);
+}
+
+thead,
+tbody,
+tr {
+  display: contents;
+}
+
+th,
+td {
+  padding: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+th {
+  position: sticky;
+  top: 0;
+  text-align: left;
+  font-weight: normal;
+  font-size: 1.1rem;
+  color: black;
+  font-weight: 800;
+}

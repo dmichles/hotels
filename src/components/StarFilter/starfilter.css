@@ -1,0 +1,32 @@
+.title {
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.btn-notclicked {
+  width: 55px;
+  height: 30px;
+  margin-top: 3px;
+  margin-right: 5px;
+  border-radius: 5px;
+  background-color: #e9ecef;
+  padding: none;
+}
+
+.btn-notclicked:hover {
+  background-color: #adb5bd;
+  cursor: pointer;
+}
+
+.btn-clicked {
+  width: 55px;
+  height: 30px;
+  margin-top: 3px;
+  margin-right: 5px;
+  border-radius: 5px;
+  background-color: #adb5bd;
+}
+
+.btn-clicked:hover {
+  cursor: pointer;
+}

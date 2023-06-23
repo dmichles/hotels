@@ -4,7 +4,8 @@ import { usePopperTooltip } from 'react-popper-tooltip';
 import 'react-popper-tooltip/dist/styles.css';
 import { IconContext } from 'react-icons';
 import { useDispatch, useSelector } from 'react-redux';
-import { travelersActions } from '../store/slices/travelers-slice';
+import { travelersActions } from '../../store/slices/travelers-slice';
+import './travelers.css';
 
 function Travelers() {
   const [open, setOpen] = useState(false);
@@ -48,9 +49,9 @@ function Travelers() {
 
   return (
     <div>
-      <div ref={setTriggerRef} style={{ marginTop: '5px' }}>
+      <div ref={setTriggerRef}>
         <div>
-          <label className="label">Travelers</label>
+          <label className="travelers-label">Travelers</label>
         </div>
         <div
           ref={ref1}
@@ -58,9 +59,7 @@ function Travelers() {
           onClick={() => setOpen(!open)}
         >
           <div>
-            <IconContext.Provider
-              value={{ style: { verticalAlign: 'middle' } }}
-            >
+            <IconContext.Provider value={{ className: 'travelers-box-icon' }}>
               <BsFillPeopleFill />
             </IconContext.Provider>
           </div>
@@ -78,34 +77,14 @@ function Travelers() {
             {...getTooltipProps({ className: 'tooltip-container' })}
           >
             <div {...getArrowProps({ className: 'tooltip-arrow' })} />
-            <div style={{ marginTop: '10px' }}>Room 1</div>
-            <div style={{ marginTop: '25px' }}>
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  marginTop: '15px',
-                }}
-              >
-                <div style={{ marginTop: '10px', fontSize: '13px' }}>
-                  Adults
-                </div>
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-around',
-                  }}
-                >
+            <div className="tooltip-container-title">Room 1</div>
+            <div className="tooltip-container-content-wrapper">
+              <div className="tooltip-container-content">
+                <div className="tooltip-container-content-title">Adults</div>
+                <div className="tooltip-container-buttons-container-wrapper">
                   <div>
                     <button
-                      style={{
-                        borderRadius: '50px',
-                        height: '25px',
-                        width: '25px',
-                        marginTop: '10px',
-                      }}
+                      className="tooltip-container-increment-button"
                       onClick={() =>
                         handleClick(counter === 1 ? 1 : counter - 1)
                       }
@@ -113,24 +92,10 @@ function Travelers() {
                       -
                     </button>
                   </div>
-                  <div
-                    style={{
-                      marginTop: '10px',
-                      fontSize: '13px',
-                      marginLeft: '10px',
-                    }}
-                  >
-                    {counter}
-                  </div>
+                  <div className="tooltip-container-counter">{counter}</div>
                   <div>
                     <button
-                      style={{
-                        borderRadius: '50px',
-                        height: '25px',
-                        width: '25px',
-                        marginTop: '10px',
-                        marginLeft: '10px',
-                      }}
+                      className="tooltip-container-decrement-button"
                       onClick={() => handleClick(counter + 1)}
                     >
                       +
@@ -138,9 +103,12 @@ function Travelers() {
                   </div>
                 </div>
               </div>
-              <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <div style={{ marginTop: '15px' }}>
-                  <button className="btn-done" onClick={handleDone}>
+              <div className="tooltip-container-done-button-wrapper">
+                <div className="tooltip-container-done-button-container">
+                  <button
+                    className="tooltip-container-done-button"
+                    onClick={handleDone}
+                  >
                     Done
                   </button>
                 </div>

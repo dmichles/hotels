@@ -2,10 +2,11 @@ import { useState } from 'react';
 import ReactDatePicker from 'react-datepicker';
 import { DateTime } from 'luxon';
 import 'react-datepicker/dist/react-datepicker.css';
+import './datepickers.css';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { startDateActions } from '../store/slices/startDate-slice';
-import { endDateActions } from '../store/slices/endDate-slice';
+import { startDateActions } from '../../store/slices/startDate-slice';
+import { endDateActions } from '../../store/slices/endDate-slice';
 
 function Datepickers() {
   const dispatch = useDispatch();
@@ -39,11 +40,11 @@ function Datepickers() {
     <div className="datepickers">
       <div>
         <div>
-          <label className="label">Check-in</label>
+          <label className="datepickers-label">Check-in</label>
         </div>
         <div>
           <ReactDatePicker
-            className="mydatepicker"
+            className="datepickers-mydatepicker"
             showIcon
             monthsShown={2}
             minDate={new Date()}
@@ -59,11 +60,11 @@ function Datepickers() {
       </div>
       <div>
         <div>
-          <label className="label">Check-out</label>
+          <label className="datepickers-label">Check-out</label>
         </div>
         <div>
           <ReactDatePicker
-            className="mydatepicker"
+            className="datepickers-mydatepicker"
             showIcon
             minDate={minEndDate}
             selectsEnd
