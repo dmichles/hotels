@@ -5,6 +5,7 @@ import HotelsPage from './pages/Hotels/Hotels';
 import HotelPage from './pages/Hotel/Hotel';
 import ReservationPage from './pages/Reservation/Reservation';
 import ReservationsPage from './pages/Reservations/Reservations';
+import ChangeReservationPage from './pages/ChangeReservation/ChangeReservation';
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
       { path: 'hotels/:to', element: <HotelPage /> },
       { path: '/reservation', element: <ReservationPage /> },
       { path: '/reservations', element: <ReservationsPage /> },
+      { path: '/changereservation', element: <ChangeReservationPage /> },
     ],
   },
 ]);

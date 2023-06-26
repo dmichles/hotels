@@ -1,13 +1,32 @@
+import { DateTime } from 'luxon';
+import { useNavigate } from 'react-router-dom';
 import {
   useFetchReservationsQuery,
   useDeleteReservationMutation,
 } from '../../store';
+import './reservations.css';
 
 const ReservationsPage = () => {
   const [deleteReservation, results] = useDeleteReservationMutation();
 
-  const handleClick = reservation => {
+  const navigate = useNavigate();
+
+  const handleCancel = reservation => {
     deleteReservation(reservation.id);
+  };
+
+  const handleChange = reservation => {
+    navigate('/changereservation', {
+      state: {
+        id: reservation.id,
+        startDate: reservation.startDate,
+        endDate: reservation.endDate,
+        travelers: reservation.travelers,
+        name: reservation.name,
+        to: reservation.to,
+        roomId: reservation.roomId,
+      },
+    });
   };
 
   const fetchedReservations = useFetchReservationsQuery();
@@ -22,15 +41,27 @@ const ReservationsPage = () => {
     if (fetchedReservations.data.length > 0) flag = true;
     reservations = fetchedReservations.data.map(reservation => {
       return (
-        <tr key={reservation.id}>
-          <td>{reservation.startDate}</td>
-          <td>{reservation.endDate}</td>
-          <td>{reservation.type}</td>
-          <td>{reservation.name}</td>
-          <td>
-            <button onClick={() => handleClick(reservation)}>Cancel</button>
-          </td>
-        </tr>
+        <div className="reservation-card" key={reservation.id}>
+          <div>
+            <img src={reservation.url} alt=""></img>
+          </div>
+          <div className="reservation-data">
+            <div className="reservation-hotel">{reservation.name}</div>
+            <div className="reservation-date-title">Reservation dates</div>
+            <div className="reservation-dates">
+              {DateTime.fromISO(reservation.startDate).toFormat(
+                'MMMM dd, yyyy'
+              )}
+              -{DateTime.fromISO(reservation.endDate).toFormat('MMMM dd, yyyy')}
+            </div>
+            <div className="reservation-travelers-title">Travelers</div>
+            <div className="reservation-travelers">{reservation.travelers}</div>
+            <div className="reservation-buttons">
+              <button onClick={() => handleCancel(reservation)}>Cancel</button>
+              <button onClick={() => handleChange(reservation)}>Change</button>
+            </div>
+          </div>
+        </div>
       );
     });
   }
@@ -40,18 +71,7 @@ const ReservationsPage = () => {
     content = (
       <div>
         <h1>Your Reservations</h1>
-        <table>
-          <thead>
-            <tr>
-              <th>Start date</th>
-              <th>End date</th>
-              <th>Room type</th>
-              <th>Hotel</th>
-              <th>Manage</th>
-            </tr>
-          </thead>
-          <tbody>{reservations}</tbody>
-        </table>
+        <div className="reservations-container">{reservations}</div>
       </div>
     );
   }

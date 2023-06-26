@@ -3,14 +3,14 @@
   max-width: 900px;
 }
 .hotels-datepickers {
-  margin-left: 217px;
+  margin-left: 210px;
   display: flex;
   border-radius: 25px;
   gap: 5px;
 }
 .hotels-filter {
   width: 260px;
-  margin: 10px;
+  margin-right: 10px;
 }
 
 .hotels-filter-heading {

@@ -3,7 +3,7 @@ import { BsFillPeopleFill } from 'react-icons/bs';
 import { FaBed } from 'react-icons/fa';
 import './room.css';
 
-function Room({ room, days, onReserve }) {
+function Room({ room, days, onReserve, buttonLabel }) {
   const handleReserve = () => {
     onReserve(room.id);
   };
@@ -41,7 +41,7 @@ function Room({ room, days, onReserve }) {
           </div>
           <div className="button-container">
             <button className="btn" onClick={handleReserve}>
-              Reserve
+              {buttonLabel}
             </button>
           </div>
         </div>

@@ -43,4 +43,5 @@ export {
   useFetchReservationsQuery,
   useDeleteReservationMutation,
   useAddReservationMutation,
+  useChangeReservationMutation,
 } from './apis/reservationsApi';

@@ -4,7 +4,7 @@
   border: 1px solid #ced4da;
   border-radius: 10px;
   margin-top: 5px;
-  width: 305px;
+  width: 335px;
   height: 400px;
   align-self: flex-start;
   box-shadow: 0 0 4px #c8c8c8;
@@ -17,7 +17,7 @@
 .room-show-img {
   position: relative;
   height: 250px;
-  width: 305px;
+  width: 345px;
 }
 
 .room-data {

@@ -47,12 +47,15 @@ function Datepickers() {
             className="datepickers-mydatepicker"
             showIcon
             monthsShown={2}
-            minDate={new Date()}
+            minDate={startDate}
             selectsStart
             selected={startDate}
             startDate={startDate}
             endDate={endDate}
             onChange={date => {
+              dispatch(
+                startDateActions.setStartDate(DateTime.fromJSDate(date).toISO())
+              );
               handleSelectStart(date);
             }}
           />

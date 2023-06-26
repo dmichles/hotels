@@ -9,10 +9,15 @@ import './travelers.css';
 
 function Travelers() {
   const [open, setOpen] = useState(false);
-  const [counter, setCounter] = useState(2);
+  const travelers = useSelector(state => state.travelers.value);
+  const [counter, setCounter] = useState(travelers);
+
+  useEffect(() => {
+    setCounter(travelers);
+  }, [travelers]);
+
   const dispatch = useDispatch();
 
-  const travelers = useSelector(state => state.travelers.value);
   const { getArrowProps, getTooltipProps, setTooltipRef, setTriggerRef } =
     usePopperTooltip({
       interactive: 'true',

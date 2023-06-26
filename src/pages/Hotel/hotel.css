@@ -14,5 +14,6 @@
   display: flex;
   flex-wrap: wrap;
   width: 900px;
-  gap: 5px;
+  gap: 15px;
+  margin-top: 5px;
 }

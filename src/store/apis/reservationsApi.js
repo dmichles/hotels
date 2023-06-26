@@ -21,6 +21,22 @@ const reservationsApi = createApi({
           };
         },
       }),
+      changeReservation: builder.mutation({
+        invalidatesTags: ['Reservations'],
+        query: reservation => {
+          return {
+            url: '/changeReservation',
+            body: {
+              id: reservation.id,
+              startDate: reservation.startDate,
+              endDate: reservation.endDate,
+              roomId: reservation.roomId,
+              travelers: reservation.travelers,
+            },
+            method: 'PUT',
+          };
+        },
+      }),
       deleteReservation: builder.mutation({
         invalidatesTags: ['Reservations'],
         query: id => {
@@ -48,5 +64,6 @@ export const {
   useFetchReservationsQuery,
   useDeleteReservationMutation,
   useAddReservationMutation,
+  useChangeReservationMutation,
 } = reservationsApi;
 export { reservationsApi };

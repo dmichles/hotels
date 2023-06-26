@@ -104,10 +104,12 @@ function HotelPage() {
     //     roomId: id,
     //   }),
     // });
+    console.log('travelers', travelers);
     const reservation = {
       startDate: DateTime.fromJSDate(startDate).toISODate(),
       endDate: DateTime.fromJSDate(endDate).toISODate(),
       roomId: roomId,
+      travelers: travelers,
     };
     const data = await addReservation(reservation).unwrap();
 
@@ -126,6 +128,7 @@ function HotelPage() {
           type: data.room.type,
           hotel: hotel.name,
           url: data.room.picUrl,
+          travelers: data.travelers,
         },
       }
     );
@@ -153,7 +156,13 @@ function HotelPage() {
 
     renderedRooms = rooms.map(room => {
       return (
-        <Room key={room.id} room={room} days={days} onReserve={onReserve} />
+        <Room
+          key={room.id}
+          room={room}
+          days={days}
+          onReserve={onReserve}
+          buttonLabel="Reserve"
+        />
       );
     });
   }
