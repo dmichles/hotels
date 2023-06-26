@@ -16,6 +16,7 @@ const reservationsApi = createApi({
               startDate: reservation.startDate,
               endDate: reservation.endDate,
               roomId: reservation.roomId,
+              travelers: reservation.travelers,
             },
             method: 'POST',
           };

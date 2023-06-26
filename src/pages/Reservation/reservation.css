@@ -6,3 +6,11 @@
 .title {
   font-size: 25px;
 }
+
+.card {
+  display: flex;
+}
+
+.data {
+  padding: 10px;
+}

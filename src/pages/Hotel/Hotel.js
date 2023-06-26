@@ -92,19 +92,6 @@ function HotelPage() {
   }
 
   const onReserve = async roomId => {
-    // const url = 'http://localhost:8080/addReservation';
-    // await fetch(url, {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //     startDate: DateTime.fromJSDate(startDate).toISODate(),
-    //     endDate: DateTime.fromJSDate(endDate).toISODate(),
-    //     roomId: id,
-    //   }),
-    // });
-    console.log('travelers', travelers);
     const reservation = {
       startDate: DateTime.fromJSDate(startDate).toISODate(),
       endDate: DateTime.fromJSDate(endDate).toISODate(),

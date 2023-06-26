@@ -25,6 +25,7 @@ const ReservationsPage = () => {
         name: reservation.name,
         to: reservation.to,
         roomId: reservation.roomId,
+        url: reservation.url,
       },
     });
   };

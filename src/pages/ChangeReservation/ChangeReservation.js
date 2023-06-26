@@ -12,6 +12,7 @@ import { travelersActions } from '../../store/slices/travelers-slice';
 import { daysSliceActions } from '../../store/slices/days-slice';
 import { useFetchRoomsQuery } from '../../store';
 import { useChangeReservationMutation } from '../../store';
+import './changereservation.css';
 
 function ChangeReservationPage() {
   const location = useLocation();
@@ -20,7 +21,7 @@ function ChangeReservationPage() {
 
   const [changeReservation, results] = useChangeReservationMutation();
 
-  const { id, startDate, endDate, name, travelers, to } = location.state;
+  const { id, startDate, endDate, name, travelers, to, url } = location.state;
 
   useEffect(() => {
     dispatch(startDateActions.setStartDate(startDate));
@@ -55,7 +56,6 @@ function ChangeReservationPage() {
   }, [numDays]);
 
   const onChange = async roomId => {
-    console.log('heree', travs);
     const reservation = {
       id: id,
       startDate: DateTime.fromJSDate(sDate).toISODate(),
@@ -73,7 +73,7 @@ function ChangeReservationPage() {
         end: data.endDate,
         type: data.room.type,
         hotel: name,
-        url: data.room.picUrl,
+        url: url,
         travelers: data.travelers,
       },
     });
@@ -93,7 +93,7 @@ function ChangeReservationPage() {
       }
       return false;
     });
-    console.log('here', travs);
+
     renderedRooms = rooms.map(room => {
       return (
         <Room
@@ -110,9 +110,7 @@ function ChangeReservationPage() {
   return (
     <div className="hotel">
       <div>
-        <div style={{ fontWeight: 'bold', fontSize: '18px' }}>
-          Change your reservation
-        </div>
+        <div className="change-title">Change your reservation</div>
         <div className="hotel-datepickers">
           <Datepickers />
           <Travelers />

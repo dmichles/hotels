@@ -11,13 +11,17 @@ function ReservationPage() {
       {/* {searchParams.get('start')}-{searchParams.get('end')}
       {searchParams.get('type')} */}
       <div className="title">Reservation confirmation</div>
-      <img src={url} alt="" />
-      <div>Reservation number: {id}</div>
-      <div>Check-in: {start}</div>
-      <div>Check-out: {end}</div>
-      <div>Travelers: {travelers}</div>
-      <div>Accomodation: {type}</div>
-      <div>Hotel: {hotel}</div>
+      <div className="card">
+        <img src={url} alt="" />
+        <div className="data">
+          <div>Reservation number: {id}</div>
+          <div>Check-in: {start}</div>
+          <div>Check-out: {end}</div>
+          <div>Travelers: {travelers}</div>
+          <div>Accomodation: {type}</div>
+          <div>Hotel: {hotel}</div>
+        </div>
+      </div>
     </div>
   );
 }
