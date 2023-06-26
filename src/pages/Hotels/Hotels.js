@@ -9,6 +9,7 @@ import HotelsList from '../../components/HotelsList/HotelsList';
 import Datepickers from '../../components/Datepickers/Datepickers';
 import { endDateActions } from '../../store/slices/endDate-slice';
 import { startDateActions } from '../../store/slices/startDate-slice';
+import { travelersActions } from '../../store/slices/travelers-slice';
 import { daysSliceActions } from '../../store/slices/days-slice';
 import Travelers from '../../components/Travelers/Travelers';
 import RatingFilter from '../../components/RatingFilter/RatingFilter';
@@ -27,16 +28,18 @@ function HotelsPage() {
   mapRating.set('Very good 8+', 8);
   mapRating.set('Excellent 9+', 9);
 
-  // useEffect(() => {
-  //   dispatch(
-  //     endDateActions.setEndDate(
-  //       DateTime.fromJSDate(new Date(new Date().getTime() + 86400000)).toISO()
-  //     )
-  //   );
-  //   dispatch(
-  //     startDateActions.setStartDate(DateTime.fromJSDate(new Date()).toISO())
-  //   );
-  // }, []);
+  useEffect(() => {
+    dispatch(
+      endDateActions.setEndDate(
+        DateTime.fromJSDate(new Date(new Date().getTime() + 86400000)).toISO()
+      )
+    );
+    dispatch(
+      startDateActions.setStartDate(DateTime.fromJSDate(new Date()).toISO())
+    );
+
+    dispatch(travelersActions.setTravelers(2));
+  }, []);
 
   const startDate = DateTime.fromISO(
     useSelector(state => state.startDate.date)
