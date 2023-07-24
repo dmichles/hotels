@@ -2,9 +2,10 @@
   margin-top: 30px;
 }
 
-.title {
+.rating-filter-title {
   margin-bottom: 15px;
   font-weight: bold;
+  font-size: 18px;
 }
 
 .radio-button-container {

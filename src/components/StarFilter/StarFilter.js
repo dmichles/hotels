@@ -45,7 +45,7 @@ function StarFilter() {
 
   return (
     <div>
-      <div className="title">Star rating</div>
+      <div className='title-filter'>Star rating</div>
       <button
         onClick={() => {
           handleClick4(!clicked4);

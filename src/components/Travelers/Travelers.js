@@ -5,12 +5,14 @@ import 'react-popper-tooltip/dist/styles.css';
 import { IconContext } from 'react-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { travelersActions } from '../../store/slices/travelers-slice';
+import { useLocation } from 'react-router-dom';
 import './travelers.css';
 
 function Travelers() {
   const [open, setOpen] = useState(false);
   const travelers = useSelector(state => state.travelers.value);
   const [counter, setCounter] = useState(travelers);
+  const location = useLocation();
 
   useEffect(() => {
     setCounter(travelers);
@@ -56,11 +58,13 @@ function Travelers() {
     <div>
       <div ref={setTriggerRef}>
         <div>
-          <label className="travelers-label">Travelers</label>
+          <label className='travelers-label'>Travelers</label>
         </div>
         <div
           ref={ref1}
-          className="travelers-box"
+          className={
+            location.pathname === '/' ? 'travelers-box' : 'travelers-room-box'
+          }
           onClick={() => setOpen(!open)}
         >
           <div>
@@ -78,18 +82,18 @@ function Travelers() {
         <div ref={ref2}>
           <div
             ref={setTooltipRef}
-            className="tooltip-container"
+            className='tooltip-container'
             {...getTooltipProps({ className: 'tooltip-container' })}
           >
             <div {...getArrowProps({ className: 'tooltip-arrow' })} />
-            <div className="tooltip-container-title">Room 1</div>
-            <div className="tooltip-container-content-wrapper">
-              <div className="tooltip-container-content">
-                <div className="tooltip-container-content-title">Adults</div>
-                <div className="tooltip-container-buttons-container-wrapper">
+            <div className='tooltip-container-title'>Room 1</div>
+            <div className='tooltip-container-content-wrapper'>
+              <div className='tooltip-container-content'>
+                <div className='tooltip-container-content-title'>Adults</div>
+                <div className='tooltip-container-buttons-container-wrapper'>
                   <div>
                     <button
-                      className="tooltip-container-increment-button"
+                      className='tooltip-container-increment-button'
                       onClick={() =>
                         handleClick(counter === 1 ? 1 : counter - 1)
                       }
@@ -97,10 +101,10 @@ function Travelers() {
                       -
                     </button>
                   </div>
-                  <div className="tooltip-container-counter">{counter}</div>
+                  <div className='tooltip-container-counter'>{counter}</div>
                   <div>
                     <button
-                      className="tooltip-container-decrement-button"
+                      className='tooltip-container-decrement-button'
                       onClick={() => handleClick(counter + 1)}
                     >
                       +
@@ -108,10 +112,10 @@ function Travelers() {
                   </div>
                 </div>
               </div>
-              <div className="tooltip-container-done-button-wrapper">
-                <div className="tooltip-container-done-button-container">
+              <div className='tooltip-container-done-button-wrapper'>
+                <div className='tooltip-container-done-button-container'>
                   <button
-                    className="tooltip-container-done-button"
+                    className='tooltip-container-done-button'
                     onClick={handleDone}
                   >
                     Done

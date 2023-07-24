@@ -48,6 +48,7 @@
 .hotel-show-data-location {
   margin-top: 1px;
   color: gray;
+  text-transform: capitalize;
 }
 
 .hotel-show-data-footer {

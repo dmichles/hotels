@@ -10,6 +10,7 @@ import maxPriceSlice from './slices/maxPrice-slice';
 import daysSlice from './slices/days-slice';
 import travelersSlice from './slices/travelers-slice';
 import ratingSlice from './slices/rating-sice';
+import locationSlice from './slices/location-slice';
 
 const store = configureStore({
   reducer: {
@@ -24,6 +25,7 @@ const store = configureStore({
     days: daysSlice.reducer,
     travelers: travelersSlice.reducer,
     rating: ratingSlice.reducer,
+    location: locationSlice.reducer,
   },
   middleware: getDefaultMiddleware => {
     return getDefaultMiddleware().concat(
@@ -38,6 +40,7 @@ export {
   useFetchHotelsQuery,
   useFetchHotelQuery,
   useFetchRoomsQuery,
+  useFetchLocationQuery,
 } from './apis/hotelsApi';
 export {
   useFetchReservationsQuery,

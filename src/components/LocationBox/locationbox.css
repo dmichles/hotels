@@ -1,0 +1,56 @@
+.box {
+  font-size: 16px;
+  border: 2px solid black;
+  border-radius: 5px;
+  width: 197px;
+  height: 31px;
+  background-color: white;
+  margin-top: auto;
+  text-transform: capitalize;
+  padding-left: 1.5rem;
+  box-sizing: border-box;
+}
+
+.tooltip-container {
+  margin: auto;
+  background: rgb(255, 255, 255);
+  padding: 5px;
+  width: 260px;
+  height: 170px;
+  border: 1px solid #c8c8c8;
+  border-radius: 10px;
+  box-shadow: 4px 4px 9px #c8c8c8;
+}
+
+.input {
+  border: none;
+  border-bottom: 1px solid black;
+  height: 26px;
+  font-size: 20px;
+  text-transform: capitalize;
+}
+.item {
+  cursor: pointer;
+  height: 20px;
+  font-size: 18px;
+  text-transform: capitalize;
+  display: flex;
+}
+
+.item-icon {
+  height: 20px;
+}
+
+.icon-box {
+  margin-top: 8px;
+  height: 1.2rem;
+  width: 1.2rem;
+  position: absolute;
+  box-sizing: border-box;
+  top: 50%;
+  left: 2px;
+  transform: translateY(-50%);
+}
+.wrapper {
+  position: relative;
+}

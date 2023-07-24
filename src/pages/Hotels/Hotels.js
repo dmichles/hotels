@@ -14,6 +14,7 @@ import { daysSliceActions } from '../../store/slices/days-slice';
 import Travelers from '../../components/Travelers/Travelers';
 import RatingFilter from '../../components/RatingFilter/RatingFilter';
 import './hotels.css';
+import LocationBox from '../../components/LocationBox/LocationBox';
 
 function HotelsPage() {
   const stars = useSelector(state => state.stars);
@@ -22,6 +23,7 @@ function HotelsPage() {
   const minPrice = useSelector(state => state.minPrice.value);
   const maxPrice = useSelector(state => state.maxPrice.value);
   const travelers = useSelector(state => state.travelers.value);
+  const location = useSelector(state => state.location.value);
   const dispatch = useDispatch();
 
   const mapRating = new Map();
@@ -64,7 +66,7 @@ function HotelsPage() {
     }
   }, [numDays]);
 
-  const { data, error, isLoading } = useFetchHotelsQuery();
+  const { data, error, isLoading } = useFetchHotelsQuery(location);
 
   if (isLoading) {
     return <div>Loading data</div>;
@@ -114,8 +116,11 @@ function HotelsPage() {
     }
 
     return (
-      <div className="hotels">
-        <div className="hotels-datepickers">
+      <div className='hotels'>
+        <div className='hotels-datepickers'>
+          <div>
+            <LocationBox />
+          </div>
           <div>
             <Datepickers />
           </div>
@@ -123,9 +128,9 @@ function HotelsPage() {
             <Travelers />
           </div>
         </div>
-        <div className="hotels-content">
-          <div className="hotels-filter">
-            <div className="hotels-filter-heading">Filter by</div>
+        <div className='hotels-content'>
+          <div className='hotels-filter'>
+            <div className='hotels-filter-heading'>Filter by</div>
             <div>
               <StarFilter />
             </div>

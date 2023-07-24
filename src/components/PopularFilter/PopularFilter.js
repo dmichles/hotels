@@ -52,48 +52,48 @@ function PopularFilter() {
 
   return (
     <div>
-      <div className="title">Popular filters</div>
+      <div className='popfilter-title'>Popular filters</div>
       <div>
         <input
-          type="checkbox"
-          id="checkbox1"
+          type='checkbox'
+          id='checkbox1'
           onChange={() => handleChange1(!checked1)}
           checked={checked1}
         />
-        <label htmlFor="checkbox1" className="label">
+        <label htmlFor='checkbox1' className='label'>
           Pool
         </label>
       </div>
       <div>
         <input
-          type="checkbox"
-          id="checkbox2"
+          type='checkbox'
+          id='checkbox2'
           onChange={() => handleChange2(!checked2)}
           checked={checked2}
         />
-        <label htmlFor="checkbox2" className="label">
+        <label htmlFor='checkbox2' className='label'>
           Pet friendly
         </label>
       </div>
       <div>
         <input
-          type="checkbox"
-          id="checkbox3"
+          type='checkbox'
+          id='checkbox3'
           onChange={() => handleChange3(!checked3)}
           checked={checked3}
         />
-        <label htmlFor="checkbox3" className="label">
+        <label htmlFor='checkbox3' className='label'>
           Parking
         </label>
       </div>
       <div>
         <input
-          type="checkbox"
-          id="checkbox4"
+          type='checkbox'
+          id='checkbox4'
           onChange={() => handleChange4(!checked4)}
           checked={checked4}
         />
-        <label htmlFor="checkbox4" className="label">
+        <label htmlFor='checkbox4' className='label'>
           Spa
         </label>
       </div>

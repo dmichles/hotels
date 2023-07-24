@@ -21,14 +21,14 @@ function PriceFilter() {
   };
   return (
     <div>
-      <div className="title">Price per night</div>
+      <div className='pricefilter-title'>Price per night</div>
       <MultiRangeSlider
-        baseClassName="multi-range-slider"
-        className="slider-box"
+        baseClassName='multi-range-slider'
+        className='slider-box'
         ruler={false}
-        barInnerColor="#f0f0f0"
-        thumbLeftColor="#f0f0f0"
-        thumbRightColor="#f0f0f0"
+        barInnerColor='#f0f0f0'
+        thumbLeftColor='#f0f0f0'
+        thumbRightColor='#f0f0f0'
         minCaption={'$' + minPrice}
         maxCaption={maxPrice === 2000 ? '$2000+' : '$' + maxPrice}
         labels={['$0', '$2000+']}

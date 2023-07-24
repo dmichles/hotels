@@ -8,9 +8,19 @@ const hotelsApi = createApi({
   endpoints(builder) {
     return {
       fetchHotels: builder.query({
-        query: () => {
+        query: loc => {
           return {
-            url: '/hotels',
+            url: '/getHotels',
+            params: { loc: loc },
+            method: 'GET',
+          };
+        },
+      }),
+      fetchLocation: builder.query({
+        query: str => {
+          return {
+            url: '/getLocation',
+            params: { loc: str },
             method: 'GET',
           };
         },
@@ -37,6 +47,10 @@ const hotelsApi = createApi({
   },
 });
 
-export const { useFetchHotelsQuery, useFetchHotelQuery, useFetchRoomsQuery } =
-  hotelsApi;
+export const {
+  useFetchHotelsQuery,
+  useFetchHotelQuery,
+  useFetchLocationQuery,
+  useFetchRoomsQuery,
+} = hotelsApi;
 export { hotelsApi };
