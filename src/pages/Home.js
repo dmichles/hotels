@@ -1,15 +1,32 @@
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { DateTime } from 'luxon';
 import LocationBox from '../components/LocationBox/LocationBox';
 import Travelers from '../components/Travelers/Travelers';
 import Datepickers from '../components/Datepickers/Datepickers';
-import travelpic from '../images/pic.jpg';
+import { endDateActions } from '../store/slices/endDate-slice';
+import { startDateActions } from '../store/slices/startDate-slice';
+import { travelersActions } from '../store/slices/travelers-slice';
+import travelpic from '../assets/images/pic.jpg';
 import './home.css';
 
 function HomePage() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(
+      endDateActions.setEndDate(
+        DateTime.fromJSDate(new Date(new Date().getTime() + 86400000)).toISO()
+      )
+    );
+    dispatch(
+      startDateActions.setStartDate(DateTime.fromJSDate(new Date()).toISO())
+    );
+
+    dispatch(travelersActions.setTravelers(2));
+  }, []);
 
   const location = useSelector(state => state.location.value);
   const startDate = DateTime.fromISO(

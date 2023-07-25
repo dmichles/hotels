@@ -11,6 +11,7 @@
 }
 
 .datepickers-mydatepicker {
+  font-size: 14px;
   border-radius: 5px;
   border: 2px solid black;
   width: 170px;

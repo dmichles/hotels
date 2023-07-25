@@ -22,6 +22,7 @@ function Datepickers() {
   const [minEndDate, setMinEndDate] = useState(
     new Date(startDate.getTime() + 86400000)
   );
+  const today = new Date();
 
   const handleSelectStart = date => {
     const tomorrow = new Date(date.getTime() + 86400000);
@@ -37,17 +38,17 @@ function Datepickers() {
   };
 
   const datepicker = (
-    <div className="datepickers">
+    <div className='datepickers'>
       <div>
         <div>
-          <label className="datepickers-label">Check-in</label>
+          <label className='datepickers-label'>Check-in</label>
         </div>
         <div>
           <ReactDatePicker
-            className="datepickers-mydatepicker"
+            className='datepickers-mydatepicker'
             showIcon
             monthsShown={2}
-            minDate={startDate}
+            minDate={today}
             selectsStart
             selected={startDate}
             startDate={startDate}
@@ -63,11 +64,11 @@ function Datepickers() {
       </div>
       <div>
         <div>
-          <label className="datepickers-label">Check-out</label>
+          <label className='datepickers-label'>Check-out</label>
         </div>
         <div>
           <ReactDatePicker
-            className="datepickers-mydatepicker"
+            className='datepickers-mydatepicker'
             showIcon
             minDate={minEndDate}
             selectsEnd
